@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NEXIA — IA Colombia 2026</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --verde:#1D9E75;--verde-oscuro:#0F6E56;--verde-claro:#E1F5EE;
+  --negro:#2C2C2A;--gris:#5F5E5A;--gris-claro:#F1EFE8;
+  --blanco:#FFFFFF;--ambar:#BA7517;--ambar-claro:#FAEEDA;
+  --coral:#993C1D;--coral-claro:#FAECE7;
+  --azul:#185FA5;--azul-claro:#E6F1FB;
+}
+html{scroll-behavior:smooth}
+body{font-family:'Segoe UI',Arial,sans-serif;background:#FAFAF8;color:var(--negro);line-height:1.6}
+
+/* NAV */
+nav{background:var(--negro);padding:16px 24px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100}
+.nav-logo{color:var(--blanco);font-size:20px;font-weight:700;letter-spacing:2px}
+.nav-logo span{color:var(--verde)}
+.nav-tag{color:#888;font-size:12px}
+.nav-links{display:flex;gap:20px}
+.nav-links a{color:#888;text-decoration:none;font-size:13px;transition:color .2s}
+.nav-links a:hover{color:var(--verde)}
+
+/* HERO */
+.hero{background:var(--negro);color:var(--blanco);text-align:center;padding:80px 24px 60px}
+.hero-badge{display:inline-block;background:rgba(29,158,117,.15);border:1px solid rgba(29,158,117,.3);color:var(--verde);font-size:12px;padding:6px 16px;border-radius:20px;margin-bottom:20px;letter-spacing:1px}
+.hero h1{font-size:clamp(28px,5vw,52px);font-weight:700;line-height:1.15;margin-bottom:16px}
+.hero h1 span{color:var(--verde)}
+.hero p{font-size:16px;color:#888;max-width:540px;margin:0 auto 32px}
+.hero-stats{display:flex;justify-content:center;gap:32px;flex-wrap:wrap;margin-top:40px;padding-top:40px;border-top:1px solid #333}
+.hero-stat{text-align:center}
+.hero-stat-num{font-size:28px;font-weight:700;color:var(--verde)}
+.hero-stat-label{font-size:12px;color:#666;margin-top:4px}
+
+/* SECTIONS */
+.section{padding:64px 24px;max-width:900px;margin:0 auto}
+.section-tag{font-size:12px;font-weight:600;color:var(--verde);text-transform:uppercase;letter-spacing:1px;margin-bottom:8px}
+.section-title{font-size:clamp(22px,3vw,32px);font-weight:700;margin-bottom:8px;color:var(--negro)}
+.section-sub{font-size:15px;color:var(--gris);margin-bottom:40px;max-width:600px}
+
+/* DIAGNÓSTICO */
+.diag-wrap{background:var(--blanco);border-radius:16px;border:1px solid #E5E3DC;overflow:hidden;box-shadow:0 2px 20px rgba(0,0,0,.06)}
+.diag-header{background:var(--verde);padding:24px;text-align:center;color:var(--blanco)}
+.diag-header h3{font-size:20px;margin-bottom:4px}
+.diag-header p{font-size:13px;opacity:.85}
+.diag-body{padding:32px}
+.progress-bar{display:flex;gap:8px;margin-bottom:32px;justify-content:center}
+.pb{flex:1;height:4px;border-radius:2px;background:#E5E3DC;transition:background .3s;max-width:80px}
+.pb.active{background:var(--verde)}
+.q-text{font-size:18px;font-weight:600;color:var(--negro);margin-bottom:20px;min-height:56px}
+.q-num{font-size:12px;color:var(--gris);margin-bottom:8px;font-weight:500}
+.opts{display:flex;flex-direction:column;gap:10px;margin-bottom:24px}
+.opt{padding:14px 18px;border-radius:10px;border:1.5px solid #E5E3DC;background:var(--blanco);cursor:pointer;font-size:14px;color:var(--negro);text-align:left;transition:all .2s;display:flex;align-items:center;gap:12px}
+.opt:hover{border-color:var(--verde);background:var(--verde-claro)}
+.opt.sel{border-color:var(--verde);background:var(--verde-claro);color:var(--verde-oscuro);font-weight:500}
+.opt-letter{width:28px;height:28px;border-radius:50%;background:#F1EFE8;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;flex-shrink:0;color:var(--gris)}
+.opt.sel .opt-letter{background:var(--verde);color:#fff}
+.diag-nav{display:flex;justify-content:flex-end;gap:10px}
+.btn{padding:12px 24px;border-radius:10px;border:1.5px solid #E5E3DC;background:transparent;cursor:pointer;font-size:14px;color:var(--negro);font-weight:500;transition:all .2s}
+.btn:hover{background:#F1EFE8}
+.btn-green{background:var(--verde);color:#fff;border-color:var(--verde)}
+.btn-green:hover{background:var(--verde-oscuro);border-color:var(--verde-oscuro)}
+.btn:disabled{opacity:.4;cursor:not-allowed}
+
+/* RESULTADOS */
+.result-hidden{display:none}
+.result-header{text-align:center;padding:32px 24px 24px}
+.result-badge{display:inline-block;padding:8px 20px;border-radius:20px;font-size:13px;font-weight:600;margin-bottom:12px}
+.result-title{font-size:28px;font-weight:700;margin-bottom:8px}
+.result-desc{font-size:15px;color:var(--gris);max-width:480px;margin:0 auto}
+.plan-section{padding:0 32px 32px}
+.plan-card{border-radius:12px;padding:20px;margin-bottom:12px}
+.plan-label{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1px;margin-bottom:8px}
+.plan-title{font-size:16px;font-weight:600;margin-bottom:6px}
+.plan-text{font-size:14px;line-height:1.6;opacity:.85}
+.plan-steps{margin-top:12px;display:flex;flex-direction:column;gap:8px}
+.step{display:flex;align-items:flex-start;gap:10px;font-size:13px}
+.step-num{min-width:24px;height:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;flex-shrink:0}
+.before-after{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:12px 0}
+.ba{border-radius:10px;padding:16px}
+.ba-title{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1px;margin-bottom:10px}
+.ba-item{font-size:13px;padding:6px 0;border-bottom:1px solid rgba(0,0,0,.06);display:flex;align-items:center;gap:6px}
+.ba-item:last-child{border:none}
+.restart-btn{display:block;text-align:center;margin:0 32px 32px}
+.inclusion-banner{background:linear-gradient(135deg,#0F6E56,#1D9E75);border-radius:12px;padding:24px;margin:0 32px 32px;color:#fff;text-align:center}
+.inclusion-banner h4{font-size:16px;margin-bottom:8px}
+.inclusion-banner p{font-size:13px;opacity:.85;margin-bottom:16px}
+.tools-row{display:flex;flex-wrap:wrap;gap:8px;justify-content:center}
+.tool-pill{background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.25);color:#fff;font-size:12px;padding:4px 12px;border-radius:20px}
+.inclusion-quote{font-style:italic;font-size:13px;opacity:.7;margin-top:12px}
+
+/* ENTREVISTAS */
+.entrevistas-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px}
+.entrevista-card{background:var(--blanco);border-radius:12px;border:1px solid #E5E3DC;padding:20px;transition:transform .2s}
+.entrevista-card:hover{transform:translateY(-2px)}
+.ent-avatar{width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:700;color:#fff;margin-bottom:12px}
+.ent-name{font-size:15px;font-weight:600;margin-bottom:2px}
+.ent-cargo{font-size:12px;color:var(--gris);margin-bottom:12px}
+.ent-quote{font-size:13px;color:var(--negro);line-height:1.6;font-style:italic;border-left:3px solid var(--verde);padding-left:12px}
+
+/* DATOS */
+.datos-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px}
+.dato-card{background:var(--blanco);border-radius:12px;border:1px solid #E5E3DC;padding:20px;text-align:center}
+.dato-num{font-size:36px;font-weight:700;color:var(--verde)}
+.dato-label{font-size:13px;color:var(--gris);margin-top:4px;line-height:1.4}
+.dato-sub{font-size:11px;color:#AAA;margin-top:4px}
+.hallazgo{background:var(--negro);border-radius:12px;padding:24px;margin-top:24px;text-align:center;color:#fff}
+.hallazgo-label{font-size:11px;color:var(--verde);font-weight:600;text-transform:uppercase;letter-spacing:1px;margin-bottom:8px}
+.hallazgo-text{font-size:16px;line-height:1.5}
+
+/* INCLUSION */
+.inclusion-full{background:var(--blanco);border-radius:16px;border:1px solid #E5E3DC;overflow:hidden}
+.inclusion-hero{background:var(--negro);padding:32px;text-align:center;color:#fff}
+.inclusion-hero h3{font-size:24px;margin-bottom:8px}
+.inclusion-hero p{color:#888;font-size:14px}
+.inclusion-content{padding:32px}
+.inclusion-stat{display:flex;align-items:center;gap:16px;margin-bottom:20px;padding:16px;background:#F1EFE8;border-radius:10px}
+.inc-stat-num{font-size:36px;font-weight:700;color:var(--verde);flex-shrink:0}
+.inc-stat-text{font-size:14px;color:var(--negro)}
+.tools-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px;margin:20px 0}
+.tool-card{background:#F1EFE8;border-radius:10px;padding:16px}
+.tool-name{font-size:14px;font-weight:600;color:var(--verde-oscuro);margin-bottom:4px}
+.tool-desc{font-size:12px;color:var(--gris)}
+.tool-cost{display:inline-block;background:var(--verde);color:#fff;font-size:11px;padding:2px 8px;border-radius:10px;margin-top:6px}
+.ley-cards{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:20px}
+.ley-card{border-radius:10px;padding:16px;font-size:13px}
+
+/* FOOTER */
+footer{background:var(--negro);color:#666;text-align:center;padding:32px 24px}
+footer .footer-logo{color:#fff;font-size:18px;font-weight:700;letter-spacing:2px;margin-bottom:8px}
+footer .footer-logo span{color:var(--verde)}
+footer p{font-size:12px;margin-top:4px}
+footer .footer-frase{color:var(--verde);font-style:italic;font-size:13px;margin:12px 0}
+
+/* RESPONSIVE */
+@media(max-width:600px){
+  .hero{padding:60px 16px 40px}
+  .hero-stats{gap:20px}
+  .before-after,.ley-cards{grid-template-columns:1fr}
+  .nav-links{display:none}
+  .plan-section,.restart-btn,.inclusion-banner{padding-left:16px;padding-right:16px}
+  .diag-body{padding:20px}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div>
+    <div class="nav-logo"><span>N</span>EXIA</div>
+    <div class="nav-tag">Estrategia & Inteligencia</div>
+  </div>
+  <div class="nav-links">
+    <a href="#diagnostico">Diagnóstico</a>
+    <a href="#datos">Datos</a>
+    <a href="#entrevistas">Entrevistas</a>
+    <a href="#inclusion">Inclusión</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-badge">IA COLOMBIA 2026</div>
+  <h1>Transformamos <span>miedo</span><br>en evolución.</h1>
+  <p>Plan estratégico de marketing para la adopción de inteligencia artificial en empresas colombianas. Desarrollado por NEXIA — Estrategia & Inteligencia.</p>
+  <a href="#diagnostico" class="btn btn-green" style="display:inline-block;text-decoration:none;margin-top:8px">Hacer el diagnóstico →</a>
+  <div class="hero-stats">
+    <div class="hero-stat"><div class="hero-stat-num">28</div><div class="hero-stat-label">Expertos entrevistados</div></div>
+    <div class="hero-stat"><div class="hero-stat-num">50</div><div class="hero-stat-label">Empresas encuestadas</div></div>
+    <div class="hero-stat"><div class="hero-stat-num">88%</div><div class="hero-stat-label">Ya usa o probó IA</div></div>
+    <div class="hero-stat"><div class="hero-stat-num">$70K</div><div class="hero-stat-label">Mes de entrada</div></div>
+  </div>
+</div>
+
+<!-- DIAGNÓSTICO -->
+<div class="section" id="diagnostico">
+  <div class="section-tag">Experience Kit · NEXIA</div>
+  <div class="section-title">Diagnóstico express de adopción de IA</div>
+  <div class="section-sub">5 preguntas · 2 minutos · Descubre tu arquetipo y recibe un plan de acción personalizado</div>
+
+  <div class="diag-wrap">
+    <div class="diag-header">
+      <h3>¿Dónde está tu empresa frente a la IA?</h3>
+      <p>Responde honestamente — no hay respuestas correctas o incorrectas</p>
+    </div>
+    <div class="diag-body" id="diag-body">
+      <div class="progress-bar" id="pbar">
+        <div class="pb active" id="pb0"></div>
+        <div class="pb" id="pb1"></div>
+        <div class="pb" id="pb2"></div>
+        <div class="pb" id="pb3"></div>
+        <div class="pb" id="pb4"></div>
+      </div>
+      <div id="q-num" class="q-num">Pregunta 1 de 5</div>
+      <div id="q-text" class="q-text">¿Tu empresa ha usado alguna herramienta de inteligencia artificial?</div>
+      <div class="opts" id="opts"></div>
+      <div class="diag-nav">
+        <button class="btn" id="btn-prev" onclick="prev()" style="display:none">← Anterior</button>
+        <button class="btn btn-green" id="btn-next" onclick="next()" disabled>Siguiente →</button>
+      </div>
+    </div>
+
+    <!-- RESULTADO -->
+    <div id="resultado" class="result-hidden">
+      <div class="result-header" id="res-header"></div>
+      <div class="plan-section" id="res-plan"></div>
+      <div class="inclusion-banner">
+        <h4>IA accesible — porque la innovación debe ser para todos</h4>
+        <p>Sin importar tu arquetipo, estas herramientas gratuitas eliminan barreras para personas con discapacidad en tu empresa hoy mismo.</p>
+        <div class="tools-row">
+          <span class="tool-pill">Seeing AI — visión</span>
+          <span class="tool-pill">Google Live Caption — sordera</span>
+          <span class="tool-pill">Copilot Narrador — movilidad</span>
+          <span class="tool-pill">Otter.ai — reuniones</span>
+          <span class="tool-pill">Be My Eyes — visual</span>
+        </div>
+        <p class="inclusion-quote">"Si la IA no es accesible, no es innovación. Es exclusión." — NEXIA 2026</p>
+      </div>
+      <div class="restart-btn">
+        <button class="btn" onclick="restart()" style="width:100%">← Reiniciar diagnóstico</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- DATOS -->
+<div style="background:#F1EFE8;padding:1px 0">
+<div class="section" id="datos">
+  <div class="section-tag">Evidencia de campo · NEXIA 2026</div>
+  <div class="section-title">Los datos que fundamentan el plan</div>
+  <div class="section-sub">Encuesta propia aplicada a 50 empresas colombianas, mayo 2026</div>
+
+  <div class="datos-grid">
+    <div class="dato-card"><div class="dato-num">88%</div><div class="dato-label">ya usa o ha probado herramientas de IA</div><div class="dato-sub">Solo el 20% tiene resultados medibles</div></div>
+    <div class="dato-card"><div class="dato-num">68%</div><div class="dato-label">prefiere recibir información por WhatsApp</div><div class="dato-sub">Canal primario validado del programa</div></div>
+    <div class="dato-card"><div class="dato-num">55%</div><div class="dato-label">dice que el costo es su mayor obstáculo</div><div class="dato-sub">Pero el 50% pagaría $50K-$150K/mes</div></div>
+    <div class="dato-card"><div class="dato-num">72%</div><div class="dato-label">no conoce el CONPES 4144</div><div class="dato-sub">$800.000M en incentivos disponibles</div></div>
+    <div class="dato-card"><div class="dato-num">42%</div><div class="dato-label">se motivaría con capacitación gratuita</div><div class="dato-sub">36% necesita ver casos de éxito de pares</div></div>
+    <div class="dato-card"><div class="dato-num">3.1M</div><div class="dato-label">colombianos con discapacidad</div><div class="dato-sub">Solo el 12% tiene empleo formal (DANE 2023)</div></div>
+  </div>
+
+  <div class="hallazgo">
+    <div class="hallazgo-label">Hallazgo contraintuitivo</div>
+    <div class="hallazgo-text">Las empresas que <strong style="color:var(--verde)">más usan IA</strong> tienen <strong style="color:var(--verde)">más miedo</strong> al desempleo tecnológico (3.23/5) que las que nunca la han probado (2.80/5).<br><span style="font-size:13px;opacity:.6;margin-top:8px;display:block">La adopción sin acompañamiento no elimina el miedo — lo amplifica.</span></div>
+  </div>
+</div>
+</div>
+
+<!-- ENTREVISTAS -->
+<div class="section" id="entrevistas">
+  <div class="section-tag">Fuentes primarias · Trabajo de campo</div>
+  <div class="section-title">Lo que dijeron los expertos</div>
+  <div class="section-sub">Tres entrevistas propias del equipo NEXIA + 28 del archivo base</div>
+
+  <div class="entrevistas-grid">
+    <div class="entrevista-card">
+      <div class="ent-avatar" style="background:#1D9E75">LB</div>
+      <div class="ent-name">Laura Belandia</div>
+      <div class="ent-cargo">Administradora · Peluquería Guadalupe · Bogotá</div>
+      <div class="ent-quote">"Utilizamos ChatGPT para automatizar el agendamiento de citas. Antes perdíamos clientes por falta de respuesta inmediata. El mayor obstáculo es no saber cómo comunicarse con la herramienta."</div>
+    </div>
+    <div class="entrevista-card">
+      <div class="ent-avatar" style="background:#185FA5">PC</div>
+      <div class="ent-name">Paola Contreras</div>
+      <div class="ent-cargo">Administradora · CM Lab · Sector Salud e Industrial</div>
+      <div class="ent-quote">"Los algoritmos nos ayudan a predecir las fallas en los diagnósticos. La barrera es el alto costo de las importaciones y la falta de capacitación en estas nuevas herramientas."</div>
+    </div>
+    <div class="entrevista-card">
+      <div class="ent-avatar" style="background:#534AB7">GM</div>
+      <div class="ent-name">Gabriel Martínez</div>
+      <div class="ent-cargo">Profesional especializado · Ministerio TIC · Colombia</div>
+      <div class="ent-quote">"Ha faltado comunicación y publicidad para llegar a las empresas. Muchas no conocen el CONPES 4144 ni sus incentivos. El éxito se mediría demostrando bondades reales, como ocurrió con la adopción del internet."</div>
+    </div>
+  </div>
+</div>
+
+<!-- INCLUSIÓN -->
+<div style="background:#F1EFE8;padding:1px 0">
+<div class="section" id="inclusion">
+  <div class="section-tag">Diferencial estratégico · NEXIA</div>
+  <div class="section-title">Inclusión como ventaja competitiva</div>
+  <div class="section-sub">No es responsabilidad social. Es una oportunidad de mercado no atendida.</div>
+
+  <div class="inclusion-full">
+    <div class="inclusion-hero">
+      <h3>La brecha más grande del mercado colombiano de IA</h3>
+      <p>Y la oportunidad más desaprovechada</p>
+    </div>
+    <div class="inclusion-content">
+      <div class="inclusion-stat">
+        <div class="inc-stat-num">12%</div>
+        <div class="inc-stat-text"><strong>Solo el 12% de los 3.1 millones de colombianos con discapacidad tiene empleo formal</strong> (DANE, 2023). La IA accesible puede cambiar eso hoy, con herramientas desde cero pesos.</div>
+      </div>
+
+      <p style="font-size:15px;font-weight:600;margin-bottom:12px;color:var(--negro)">Herramientas de IA accesible disponibles ahora en Colombia</p>
+      <div class="tools-grid">
+        <div class="tool-card"><div class="tool-name">Seeing AI</div><div class="tool-desc">Describe imágenes y lee texto para personas con discapacidad visual</div><span class="tool-cost">Gratuita</span></div>
+        <div class="tool-card"><div class="tool-name">Google Live Caption</div><div class="tool-desc">Subtitulación automática en tiempo real para personas sordas</div><span class="tool-cost">Gratuita</span></div>
+        <div class="tool-card"><div class="tool-name">Copilot + Narrador</div><div class="tool-desc">Control por voz e IA para personas con discapacidad motriz</div><span class="tool-cost">Gratuita</span></div>
+        <div class="tool-card"><div class="tool-name">Otter.ai</div><div class="tool-desc">Transcripción automática de reuniones para personas sordas</div><span class="tool-cost">Freemium</span></div>
+        <div class="tool-card"><div class="tool-name">Be My Eyes</div><div class="tool-desc">Asistencia visual por IA en tiempo real para entornos laborales</div><span class="tool-cost">Gratuita</span></div>
+        <div class="tool-card"><div class="tool-name">Voice Control</div><div class="tool-desc">Control completo del dispositivo por voz en iOS y Android</div><span class="tool-cost">Gratuita</span></div>
+      </div>
+
+      <div class="ley-cards">
+        <div class="ley-card" style="background:var(--verde-claro);color:var(--verde-oscuro)">
+          <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1px;margin-bottom:6px">Ley 1618 de 2013</div>
+          <div style="font-size:14px;font-weight:600;margin-bottom:4px">Obligación legal</div>
+          <div style="font-size:13px;opacity:.85">Las empresas deben garantizar inclusión laboral de personas con discapacidad. La IA accesible hace viable esta obligación sin costos desproporcionados.</div>
+        </div>
+        <div class="ley-card" style="background:var(--ambar-claro);color:#663800">
+          <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1px;margin-bottom:6px">Ley 361 de 1997</div>
+          <div style="font-size:14px;font-weight:600;margin-bottom:4px">Incentivo tributario</div>
+          <div style="font-size:13px;opacity:.85">Las empresas que contraten personas con discapacidad acceden a beneficios tributarios verificables. La inclusión reduce costos fiscales, no los incrementa.</div>
+        </div>
+      </div>
+
+      <div style="background:var(--negro);border-radius:12px;padding:24px;margin-top:20px;text-align:center;color:#fff">
+        <div style="font-size:13px;font-style:italic;color:#aaa;margin-bottom:8px">"La innovación no es real si no es para todos. Cuando las marcas líderes priorizan la accesibilidad, envían un mensaje potente: todos merecen ser parte de la narrativa."</div>
+        <div style="font-size:12px;color:var(--verde)">— Carolina Pinzón Echeverry · Fundación Escuchamos · LinkedIn, mayo 2026</div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo"><span>N</span>EXIA</div>
+  <div class="footer-frase">Transformamos miedo en evolución.</div>
+  <p>Universidad Militar Nueva Granada · Gerencia de Mercadeo · Séptimo Semestre · 2026</p>
+  <p style="margin-top:8px">Yuliet Carolina Garzón Alfonso · Cesar Augusto Bonilla Gil · Darcy Sabrina Ortiz Almanza · Santiago Pira Rubio</p>
+</footer>
+
+<script>
+const preguntas=[
+  {txt:"¿Tu empresa ha usado alguna herramienta de inteligencia artificial?",opts:["Sí, la usamos regularmente con resultados claros","La hemos probado alguna vez, pero sin profundizar","No, nunca la hemos usado","No sé si lo que usamos cuenta como IA"]},
+  {txt:"¿Qué tanto te preocupa que la IA pueda reemplazar empleos en tu empresa?",opts:["Mucho — es mi mayor preocupación","Algo — lo pienso pero no me paraliza","Poco — creo que potencia a los equipos","No lo había pensado en esos términos"]},
+  {txt:"Si quisieras implementar IA en tu empresa mañana, ¿sabes por dónde empezar?",opts:["Sí, tengo una ruta clara y recursos","Más o menos — tengo ideas pero no un plan","No — no sé qué herramienta usar ni cuánto cuesta","No quiero implementarla — prefiero esperar"]},
+  {txt:"¿Cuánto estarías dispuesto a invertir mensualmente en herramientas de IA para tu negocio?",opts:["Nada — no lo veo como inversión necesaria","Menos de $150.000 pesos al mes","Entre $150.000 y $500.000 al mes","Más de $500.000 si hay retorno claro"]},
+  {txt:"¿Qué te frena más para adoptar inteligencia artificial en tu empresa hoy?",opts:["El miedo a que afecte negativamente a mi equipo","No saber cómo empezar ni qué herramienta usar","Falta de estructura para escalar lo que ya hago","Nada — ya tengo un camino claro"]}
+];
+
+const resultados={
+  resistente:{
+    badge:"Resistente",badgeBg:"#FAECE7",badgeColor:"#993C1D",
+    desc:"Tu empresa reconoce la necesidad pero el miedo es la barrera principal. No es falta de recursos — es falta de evidencia concreta de que la IA potencia al equipo, no lo reemplaza.",
+    plan:[
+      {label:"El problema",color:"#FAECE7",textColor:"#993C1D",title:"El miedo es real y válido",text:"El 64% de los expertos que entrevistamos identifica la resistencia cultural como la barrera principal en Colombia. Tu preocupación es la más común del mercado.",steps:[]},
+      {label:"Paso 1 — Esta semana",color:"#E1F5EE",textColor:"#0F6E56",title:"Prueba una herramienta sin decirle 'IA' a tu equipo",text:"Usa ChatGPT para redactar un correo o crear una respuesta a un cliente. Solo tú. Sin anunciarlo. Mide el tiempo que te tomó vs. antes.",steps:["Entra a chat.openai.com — es gratis","Escribe: 'Ayúdame a redactar una respuesta a un cliente que se queja de...'","Mide cuántos minutos te ahorró"]},
+      {label:"Paso 2 — Primer mes",color:"#E1F5EE",textColor:"#0F6E56",title:"Piloto de 30 días sin anunciar",text:"Antes de hablarle a tu equipo sobre IA, úsala tú mismo en 3 tareas repetitivas. Cuando tengas el resultado, entonces muéstraselo.",steps:["Identifica 3 tareas que repites cada semana","Prueba automatizarlas con ChatGPT o Copilot","Documenta el tiempo ahorrado con números reales"]},
+      {label:"Paso 3 — NEXIA te propone",color:"#0F6E56",textColor:"#fff",title:"Piloto guiado: sin costo, sin compromiso",text:"Un consultor NEXIA acompaña a tu empresa durante 30 días. Si en ese tiempo no hay un ahorro real de tiempo verificable, no hay compromiso de continuidad.",steps:["30 días de acompañamiento personalizado","Una herramienta implementada en tu negocio real","Resultado medible antes de cualquier pago"]}
+    ]
+  },
+  curioso:{
+    badge:"Curioso",badgeBg:"#E1F5EE",badgeColor:"#0F6E56",
+    desc:"Quieres adoptarla, ves el potencial, pero no encuentras la ruta de entrada. Tu barrera no es el dinero — es no saber por dónde empezar sin arriesgar tiempo ni recursos.",
+    plan:[
+      {label:"El problema",color:"#E6F1FB",textColor:"#185FA5",title:"La parálisis del primer paso",text:"El 26% de las empresas que encuestamos identifica 'no saber cómo empezar' como su mayor obstáculo. Tienes la disposición — lo que falta es la ruta.",steps:[]},
+      {label:"Paso 1 — Hoy",color:"#E1F5EE",textColor:"#0F6E56",title:"Tu primera herramienta en 10 minutos",text:"WhatsApp Business + un chatbot básico = tu primer caso de uso de IA. Costo: $0. Tiempo: 10 minutos.",steps:["Descarga WhatsApp Business (gratis)","Activa los mensajes automáticos de bienvenida","Configura respuestas rápidas para las 5 preguntas más frecuentes"]},
+      {label:"Paso 2 — Primera semana",color:"#E1F5EE",textColor:"#0F6E56",title:"ChatGPT para 3 tareas de tu negocio",text:"ChatGPT gratuito ya puede ayudarte con: responder correos, crear publicaciones para redes sociales y analizar retroalimentación de clientes.",steps:["Tarea 1: responder correos de clientes (ahorra 30 min/día)","Tarea 2: crear contenido para redes sociales (ahorra 1 hora/semana)","Tarea 3: resumir retroalimentación de clientes (ahorra 2 horas/semana)"]},
+      {label:"Paso 3 — NEXIA te propone",color:"#1D9E75",textColor:"#fff",title:"De cero a tu primer caso de uso en 90 días",text:"Una hoja de ruta de 3 pasos, acompañamiento de un consultor NEXIA, desde $70.000 pesos al mes. Sin conocimiento técnico previo requerido.",steps:["Semana 1-4: diagnóstico y primera herramienta implementada","Semana 5-8: automatización de un proceso repetitivo con resultado medible","Semana 9-12: caso de éxito documentado y compartible"]}
+    ]
+  },
+  activador:{
+    badge:"Activador",badgeBg:"#E6F1FB",badgeColor:"#185FA5",
+    desc:"Ya usas IA, pero cada área hace lo suyo sin coordinación ni métricas. Pasaste de usarla a depender de ella — ahora es el momento de liderarla estratégicamente.",
+    plan:[
+      {label:"El problema",color:"#EEEDFE",textColor:"#534AB7",title:"Uso sin gobernanza",text:"Según nuestras entrevistas, el 41% de las empresas dice adoptar IA pero solo el 20% tiene casos de uso reales y medibles. Estás usando IA — pero ¿sabes cuánto te está generando?",steps:[]},
+      {label:"Paso 1 — Esta semana",color:"#E1F5EE",textColor:"#0F6E56",title:"Inventario de IA en tu empresa",text:"Antes de estructurar, necesitas saber qué tienes. Haz este inventario en 30 minutos.",steps:["Lista todas las herramientas de IA que usa tu equipo","Identifica quién las usa, para qué y con qué frecuencia","Mide el impacto actual: ¿cuánto tiempo ahorran por semana?"]},
+      {label:"Paso 2 — Primer mes",color:"#E1F5EE",textColor:"#0F6E56",title:"Define 3 métricas de impacto",text:"Sin métricas, la IA es un gasto. Con métricas, es una inversión. Elige 3 KPIs específicos para medir el impacto de la IA en tu negocio.",steps:["KPI 1: tiempo ahorrado por semana (en horas)","KPI 2: reducción de errores operativos (en porcentaje)","KPI 3: satisfacción del cliente antes vs. después (escala NPS)"]},
+      {label:"Paso 3 — NEXIA te propone",color:"#185FA5",textColor:"#fff",title:"Marco de gobernanza de IA",text:"Un framework que convierte el uso empírico en ventaja competitiva estructurada, con políticas internas, métricas de impacto y casos de uso replicables en toda la organización.",steps:["Política interna de IA: qué se puede y qué no se puede hacer","Dashboard de impacto: métricas en tiempo real","Protocolo de escalabilidad: cómo replicar el éxito a nuevas áreas"]}
+    ]
+  }
+};
+
+let cur=0;const resp=[];
+
+function renderQ(){
+  const q=preguntas[cur];
+  document.getElementById('q-num').textContent=`Pregunta ${cur+1} de 5`;
+  document.getElementById('q-text').textContent=q.txt;
+  const optsDiv=document.getElementById('opts');
+  optsDiv.innerHTML='';
+  q.opts.forEach((o,i)=>{
+    const btn=document.createElement('button');
+    btn.className='opt'+(resp[cur]===i?' sel':'');
+    btn.innerHTML=`<span class="opt-letter">${String.fromCharCode(65+i)}</span>${o}`;
+    btn.onclick=()=>selectOpt(i);
+    optsDiv.appendChild(btn);
+  });
+  document.getElementById('btn-prev').style.display=cur>0?'block':'none';
+  const nxt=document.getElementById('btn-next');
+  nxt.disabled=resp[cur]===undefined;
+  nxt.textContent=cur<4?'Siguiente →':'Ver mi resultado →';
+  for(let i=0;i<5;i++) document.getElementById('pb'+i).classList.toggle('active',i<=cur);
+}
+
+function selectOpt(i){
+  resp[cur]=i;
+  document.querySelectorAll('.opt').forEach((o,idx)=>o.classList.toggle('sel',idx===i));
+  document.getElementById('btn-next').disabled=false;
+}
+
+function next(){
+  if(cur<4){cur++;renderQ();}
+  else showResult();
+}
+
+function prev(){if(cur>0){cur--;renderQ();}}
+
+function showResult(){
+  let score=0;
+  if(resp[0]===0)score+=3;else if(resp[0]===1)score+=2;else if(resp[0]===3)score+=1;
+  if(resp[1]===0)score-=2;else if(resp[1]===2)score+=2;else if(resp[1]===3)score+=1;
+  if(resp[2]===0)score+=3;else if(resp[2]===1)score+=1;else if(resp[2]===3)score-=2;
+  if(resp[3]===0)score-=1;else if(resp[3]===3)score+=2;else if(resp[3]===2)score+=1;
+  if(resp[4]===2)score+=2;else if(resp[4]===1)score+=1;else if(resp[4]===0)score-=1;else if(resp[4]===3)score+=3;
+
+  const tipo=score<=1?'resistente':score<=5?'curioso':'activador';
+  const r=resultados[tipo];
+
+  document.getElementById('res-header').innerHTML=`
+    <div class="result-badge" style="background:${r.badgeBg};color:${r.badgeColor}">Tu arquetipo · NEXIA</div>
+    <div class="result-title" style="color:${r.badgeColor}">${r.badge}</div>
+    <div class="result-desc">${r.desc}</div>
+  `;
+
+  let planHTML='<div class="before-after"><div class="ba" style="background:#FAECE7"><div class="ba-title" style="color:#993C1D">Antes</div>';
+  ['Miedo','Desconocimiento','Uso empírico','Exclusión'].forEach(i=>{planHTML+=`<div class="ba-item" style="color:#993C1D">✕ ${i}</div>`;});
+  planHTML+='</div><div class="ba" style="background:#E1F5EE"><div class="ba-title" style="color:#0F6E56">Después de NEXIA</div>';
+  ['Confianza','Acompañamiento','Resultado medible','Inclusión'].forEach(i=>{planHTML+=`<div class="ba-item" style="color:#0F6E56">✓ ${i}</div>`;});
+  planHTML+='</div></div>';
+
+  r.plan.forEach(p=>{
+    planHTML+=`<div class="plan-card" style="background:${p.color}">
+      <div class="plan-label" style="color:${p.textColor}">${p.label}</div>
+      <div class="plan-title" style="color:${p.textColor}">${p.title}</div>
+      <div class="plan-text" style="color:${p.textColor}">${p.text}</div>`;
+    if(p.steps.length){
+      planHTML+='<div class="plan-steps">';
+      p.steps.forEach((s,i)=>{planHTML+=`<div class="step"><div class="step-num" style="background:${p.textColor};color:${p.color}">${i+1}</div><div style="color:${p.textColor}">${s}</div></div>`;});
+      planHTML+='</div>';
+    }
+    planHTML+='</div>';
+  });
+
+  document.getElementById('res-plan').innerHTML=planHTML;
+  document.getElementById('diag-body').style.display='none';
+  document.getElementById('resultado').style.display='block';
+}
+
+function restart(){
+  resp.length=0;cur=0;
+  document.getElementById('diag-body').style.display='block';
+  document.getElementById('resultado').style.display='none';
+  renderQ();
+}
+
+renderQ();
+</script>
+</body>
+</html>
