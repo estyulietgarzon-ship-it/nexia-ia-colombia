@@ -13,14 +13,39 @@
   --b:#FFFFFF;--a:#BA7517;--ac:#FAEEDA;
   --c:#993C1D;--cc:#FAECE7;--az:#185FA5;--azc:#E6F1FB;
 }
+
+/* ACCESIBILIDAD */
+body.alto-contraste{background:#000!important;color:#fff!important}
+body.alto-contraste nav,body.alto-contraste .hero,body.alto-contraste footer{background:#000!important;border-bottom:2px solid #fff}
+body.alto-contraste .dbox,body.alto-contraste .chart-card,body.alto-contraste .chat-wrap,body.alto-contraste .calc-wrap,body.alto-contraste .ent-card,body.alto-contraste .inc-full,body.alto-contraste .region-card{background:#111!important;border-color:#fff!important;color:#fff!important}
+body.alto-contraste .opt{background:#111!important;border-color:#fff!important;color:#fff!important}
+body.alto-contraste .opt.sel{background:#fff!important;color:#000!important}
+body.alto-contraste .msg-bot{background:#333!important;color:#fff!important}
+body.alto-contraste p,body.alto-contraste div,body.alto-contraste span,body.alto-contraste h1,body.alto-contraste h2,body.alto-contraste h3,body.alto-contraste h4,body.alto-contraste li{color:#fff!important}
+body.daltonismo{filter:grayscale(30%) sepia(20%)}
+body.texto-grande{font-size:120%}
+body.texto-grande .qtxt{font-size:20px!important}
+
+/* BARRA ACCESIBILIDAD */
+.acc-bar{position:fixed;bottom:24px;right:24px;z-index:999;display:flex;flex-direction:column;gap:8px;align-items:flex-end}
+.acc-toggle{width:48px;height:48px;border-radius:50%;background:var(--v);border:none;cursor:pointer;box-shadow:0 4px 12px rgba(0,0,0,.2);display:flex;align-items:center;justify-content:center;font-size:20px;color:#fff;transition:all .2s}
+.acc-toggle:hover{background:var(--vd);transform:scale(1.1)}
+.acc-panel{background:#fff;border-radius:14px;border:1px solid #E5E3DC;padding:16px;box-shadow:0 8px 24px rgba(0,0,0,.12);display:none;min-width:220px}
+.acc-panel.show{display:block}
+.acc-panel h4{font-size:13px;font-weight:700;color:var(--n);margin-bottom:12px;display:flex;align-items:center;gap:6px}
+.acc-btn{width:100%;padding:10px 14px;border-radius:8px;border:1.5px solid #E5E3DC;background:#fff;cursor:pointer;font-size:13px;text-align:left;transition:all .2s;margin-bottom:6px;display:flex;align-items:center;gap:8px;color:var(--n)}
+.acc-btn:hover{background:var(--vc);border-color:var(--v)}
+.acc-btn.on{background:var(--vc);border-color:var(--v);color:var(--vd);font-weight:500}
+.acc-note{font-size:11px;color:#aaa;margin-top:8px;line-height:1.5}
+
 html{scroll-behavior:smooth}
-body{font-family:'Segoe UI',Arial,sans-serif;background:#FAFAF8;color:var(--n);line-height:1.6}
+body{font-family:'Segoe UI',Arial,sans-serif;background:#FAFAF8;color:var(--n);line-height:1.6;transition:filter .3s,font-size .3s}
 
 /* NAV */
 nav{background:var(--n);padding:14px 24px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:200}
 .nl{color:#fff;font-size:20px;font-weight:700;letter-spacing:2px}.nl span{color:var(--v)}
 .nt{color:#888;font-size:11px}
-.nlinks{display:flex;gap:16px}
+.nlinks{display:flex;gap:14px}
 .nlinks a{color:#888;text-decoration:none;font-size:12px;transition:color .2s}.nlinks a:hover{color:var(--v)}
 
 /* HERO */
@@ -31,13 +56,11 @@ nav{background:var(--n);padding:14px 24px;display:flex;align-items:center;justif
 .hero h1 span{color:var(--v)}
 .hero p{font-size:15px;color:#888;max-width:500px;margin:0 auto 28px}
 .hbtns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
-.hbtn{padding:12px 24px;border-radius:10px;font-size:14px;font-weight:600;cursor:pointer;text-decoration:none;transition:all .2s}
+.hbtn{padding:12px 24px;border-radius:10px;font-size:14px;font-weight:600;cursor:pointer;text-decoration:none;transition:all .2s;display:inline-block}
 .hbtn-g{background:var(--v);color:#fff;border:none}.hbtn-g:hover{background:var(--vd)}
 .hbtn-o{background:transparent;color:#fff;border:1.5px solid #444}.hbtn-o:hover{border-color:var(--v);color:var(--v)}
-
-/* CONTADORES */
-.counters{display:flex;justify-content:center;gap:0;flex-wrap:wrap;margin-top:48px;padding-top:40px;border-top:1px solid #333}
-.counter{text-align:center;padding:0 28px;border-right:1px solid #333}
+.counters{display:flex;justify-content:center;flex-wrap:wrap;margin-top:48px;padding-top:40px;border-top:1px solid #333}
+.counter{text-align:center;padding:0 24px;border-right:1px solid #333}
 .counter:last-child{border:none}
 .cnum{font-size:32px;font-weight:700;color:var(--v)}
 .clabel{font-size:11px;color:#666;margin-top:4px}
@@ -70,8 +93,6 @@ nav{background:var(--n);padding:14px 24px;display:flex;align-items:center;justif
 .btn:hover{background:#F1EFE8}
 .btng{background:var(--v);color:#fff;border-color:var(--v)}.btng:hover{background:var(--vd)}
 .btn:disabled{opacity:.4;cursor:not-allowed}
-
-/* RESULTADO */
 .rhide{display:none}
 .rhead{text-align:center;padding:28px 24px 20px}
 .rbadge{display:inline-block;padding:7px 18px;border-radius:20px;font-size:12px;font-weight:700;margin-bottom:10px}
@@ -108,19 +129,22 @@ nav{background:var(--n);padding:14px 24px;display:flex;align-items:center;justif
 
 /* MAPA */
 .mapa-wrap{display:grid;grid-template-columns:1fr 1fr;gap:24px;align-items:start}
-.mapa-svg{background:#fff;border-radius:12px;border:1px solid #E5E3DC;padding:20px}
-.regiones{display:flex;flex-direction:column;gap:10px}
+.mapa-img-wrap{background:#fff;border-radius:12px;border:1px solid #E5E3DC;padding:16px;text-align:center}
+.mapa-img-wrap img{width:100%;max-width:320px;border-radius:8px}
+.mapa-fuente{font-size:10px;color:#aaa;margin-top:8px;font-style:italic}
+.regiones{display:flex;flex-direction:column;gap:8px}
 .region-card{background:#fff;border-radius:10px;border:1px solid #E5E3DC;padding:14px;cursor:pointer;transition:all .2s;border-left:4px solid transparent}
 .region-card:hover{border-left-color:var(--v);background:#FAFFF8}
 .region-card.active{border-left-color:var(--v);background:var(--vc)}
 .reg-name{font-size:13px;font-weight:600;margin-bottom:4px}
-.reg-bar{height:6px;border-radius:3px;background:#E5E3DC;margin-bottom:6px;overflow:hidden}
+.reg-bar{height:5px;border-radius:3px;background:#E5E3DC;margin-bottom:6px}
 .reg-fill{height:100%;border-radius:3px;background:var(--v);transition:width .6s}
 .reg-stats{display:flex;gap:12px;font-size:11px;color:var(--g)}
-.reg-detail{background:var(--vc);border-radius:10px;padding:14px;margin-top:10px;display:none;font-size:12px;color:var(--vd);line-height:1.6}
+.reg-detail{background:var(--vc);border-radius:8px;padding:12px;margin-top:8px;display:none;font-size:12px;color:var(--vd);line-height:1.6}
 .reg-detail.show{display:block}
+.reg-fuente{font-size:10px;color:var(--vd);opacity:.7;margin-top:6px;font-style:italic}
 
-/* CALCULADORA ROI */
+/* CALCULADORA */
 .calc-wrap{background:#fff;border-radius:16px;border:1px solid #E5E3DC;padding:28px}
 .calc-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-bottom:24px}
 .calc-field label{font-size:12px;font-weight:600;color:var(--g);margin-bottom:6px;display:block}
@@ -141,6 +165,8 @@ nav{background:var(--n);padding:14px 24px;display:flex;align-items:center;justif
 .tl-titulo{font-size:15px;font-weight:600;margin-bottom:4px}
 .tl-desc{font-size:13px;color:var(--g);line-height:1.5}
 .tl-hito{display:inline-block;margin-top:6px;font-size:11px;background:var(--vc);color:var(--vd);padding:3px 10px;border-radius:10px;font-weight:600}
+.tl-kpis{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+.tl-kpi{font-size:11px;background:#fff;border:1px solid var(--v);color:var(--vd);padding:3px 10px;border-radius:10px}
 
 /* ENTREVISTAS */
 .ent-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px}
@@ -162,14 +188,15 @@ nav{background:var(--n);padding:14px 24px;display:flex;align-items:center;justif
 .msg{max-width:80%;padding:10px 14px;border-radius:12px;font-size:13px;line-height:1.5}
 .msg-bot{background:#F1EFE8;color:var(--n);align-self:flex-start;border-bottom-left-radius:4px}
 .msg-user{background:var(--v);color:#fff;align-self:flex-end;border-bottom-right-radius:4px}
-.msg-typing{background:#F1EFE8;color:var(--g);align-self:flex-start;border-bottom-left-radius:4px;font-style:italic;font-size:12px}
-.chat-sugs{padding:12px 16px;border-top:1px solid #F1EFE8;display:flex;flex-wrap:wrap;gap:6px}
+.msg-typing{background:#F1EFE8;color:var(--g);align-self:flex-start;font-style:italic;font-size:12px;border-bottom-left-radius:4px}
+.chat-sugs{padding:10px 16px;border-top:1px solid #F1EFE8;display:flex;flex-wrap:wrap;gap:6px}
 .sug{background:#F1EFE8;border:none;border-radius:20px;padding:6px 12px;font-size:12px;cursor:pointer;color:var(--n);transition:all .2s}
 .sug:hover{background:var(--vc);color:var(--vd)}
 .chat-input{display:flex;gap:8px;padding:12px 16px;border-top:1px solid #F1EFE8}
 .chat-input input{flex:1;padding:10px 14px;border-radius:10px;border:1.5px solid #E5E3DC;font-size:13px;outline:none}
 .chat-input input:focus{border-color:var(--v)}
 .chat-input button{padding:10px 16px;background:var(--v);color:#fff;border:none;border-radius:10px;cursor:pointer;font-size:13px;font-weight:600}
+.chat-nota{font-size:11px;color:#aaa;padding:8px 16px;border-top:1px solid #F1EFE8;font-style:italic}
 
 /* INCLUSIÓN */
 .inc-full{background:#fff;border-radius:16px;border:1px solid #E5E3DC;overflow:hidden}
@@ -186,7 +213,7 @@ nav{background:var(--n);padding:14px 24px;display:flex;align-items:center;justif
 .td{font-size:11px;color:var(--g)}
 .tcost{display:inline-block;background:var(--v);color:#fff;font-size:10px;padding:2px 7px;border-radius:10px;margin-top:5px}
 .leyes{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:16px}
-.ley{border-radius:10px;padding:14px;font-size:12px}
+.ley{border-radius:10px;padding:14px}
 
 /* FOOTER */
 footer{background:var(--n);color:#666;text-align:center;padding:32px 24px}
@@ -197,16 +224,42 @@ footer{background:var(--n);color:#666;text-align:center;padding:32px 24px}
 @media(max-width:640px){
   .mapa-wrap,.calc-grid,.ba,.leyes{grid-template-columns:1fr}
   .nlinks{display:none}
-  .counters{gap:0}.counter{padding:0 16px}
   .calc-results{grid-template-columns:1fr}
+  .acc-bar{bottom:16px;right:16px}
 }
 </style>
 </head>
 <body>
 
+<!-- BARRA DE ACCESIBILIDAD FLOTANTE -->
+<div class="acc-bar" role="region" aria-label="Herramientas de accesibilidad">
+  <div class="acc-panel" id="acc-panel" role="dialog" aria-label="Opciones de accesibilidad">
+    <h4>♿ Accesibilidad</h4>
+    <button class="acc-btn" id="btn-contraste" onclick="toggleAcc('alto-contraste','btn-contraste')" aria-pressed="false">
+      🌗 Alto contraste
+    </button>
+    <button class="acc-btn" id="btn-daltonismo" onclick="toggleAcc('daltonismo','btn-daltonismo')" aria-pressed="false">
+      👁️ Modo daltonismo
+    </button>
+    <button class="acc-btn" id="btn-texto" onclick="toggleAcc('texto-grande','btn-texto')" aria-pressed="false">
+      🔡 Texto más grande
+    </button>
+    <button class="acc-btn" onclick="leerPagina()" aria-label="Activar lector de pantalla">
+      🔊 Leer página en voz alta
+    </button>
+    <button class="acc-btn" onclick="detenerLectura()" aria-label="Detener lectura">
+      ⏹️ Detener lectura
+    </button>
+    <p class="acc-note">Compatible con Seeing AI, NVDA y VoiceOver. Todos los elementos tienen etiquetas ARIA.</p>
+  </div>
+  <button class="acc-toggle" onclick="document.getElementById('acc-panel').classList.toggle('show')" aria-label="Abrir herramientas de accesibilidad" title="Accesibilidad">
+    ♿
+  </button>
+</div>
+
 <!-- NAV -->
-<nav>
-  <div><div class="nl"><span>N</span>EXIA</div><div class="nt">Estrategia & Inteligencia</div></div>
+<nav role="navigation" aria-label="Navegación principal">
+  <div><div class="nl" aria-label="NEXIA"><span>N</span>EXIA</div><div class="nt">Estrategia & Inteligencia</div></div>
   <div class="nlinks">
     <a href="#diagnostico">Diagnóstico</a>
     <a href="#graficos">Datos</a>
@@ -219,41 +272,41 @@ footer{background:var(--n);color:#666;text-align:center;padding:32px 24px}
 </nav>
 
 <!-- HERO -->
-<div class="hero">
+<div class="hero" role="banner">
   <div class="hbadge">IA COLOMBIA 2026</div>
   <h1>Transformamos <span>miedo</span><br>en evolución.</h1>
-  <p>Plan estratégico de marketing para la adopción de inteligencia artificial en empresas colombianas.</p>
+  <p>Plan estratégico de marketing para la adopción de inteligencia artificial en empresas colombianas. Universidad Militar Nueva Granada.</p>
   <div class="hbtns">
     <a href="#diagnostico" class="hbtn hbtn-g">Hacer diagnóstico →</a>
     <a href="#roi" class="hbtn hbtn-o">Calcular mi ROI</a>
   </div>
-  <div class="counters">
+  <div class="counters" aria-label="Estadísticas del estudio">
     <div class="counter"><div class="cnum" data-target="28" data-suffix="">0</div><div class="clabel">Expertos entrevistados</div></div>
     <div class="counter"><div class="cnum" data-target="50" data-suffix="">0</div><div class="clabel">Empresas encuestadas</div></div>
     <div class="counter"><div class="cnum" data-target="88" data-suffix="%">0%</div><div class="clabel">Ya usa o probó IA</div></div>
     <div class="counter"><div class="cnum" data-target="72" data-suffix="%">0%</div><div class="clabel">No conoce el CONPES 4144</div></div>
-    <div class="counter"><div class="cnum" data-target="54" data-suffix="x">0x</div><div class="clabel">Ratio CLV/CAC</div></div>
+    <div class="counter"><div class="cnum" data-target="54" data-suffix="x">0x</div><div class="clabel">Ratio CLV/CAC estimado</div></div>
   </div>
 </div>
 
 <!-- DIAGNÓSTICO -->
-<div class="sec" id="diagnostico">
+<div class="sec" id="diagnostico" role="main">
   <div class="stag">Experience Kit · NEXIA</div>
   <div class="stitle">Diagnóstico express de adopción de IA</div>
   <div class="ssub">5 preguntas · 2 minutos · Descubre tu arquetipo y recibe un plan de acción personalizado</div>
-  <div class="dbox">
+  <div class="dbox" role="form" aria-label="Diagnóstico de adopción de IA">
     <div class="dhead"><h3>¿Dónde está tu empresa frente a la IA?</h3><p>Responde honestamente — no hay respuestas incorrectas</p></div>
     <div class="dbody" id="dbody">
-      <div class="pbar" id="pbar">
+      <div class="pbar" id="pbar" role="progressbar" aria-label="Progreso del diagnóstico">
         <div class="pb on" id="pb0"></div><div class="pb" id="pb1"></div>
         <div class="pb" id="pb2"></div><div class="pb" id="pb3"></div><div class="pb" id="pb4"></div>
       </div>
-      <div id="qnum" class="qnum">Pregunta 1 de 5</div>
-      <div id="qtxt" class="qtxt"></div>
-      <div class="opts" id="opts"></div>
+      <div id="qnum" class="qnum"></div>
+      <div id="qtxt" class="qtxt" role="heading" aria-level="3"></div>
+      <div class="opts" id="opts" role="radiogroup"></div>
       <div class="dnav">
-        <button class="btn" id="bprev" onclick="dprev()" style="display:none">← Anterior</button>
-        <button class="btn btng" id="bnext" onclick="dnext()" disabled>Siguiente →</button>
+        <button class="btn" id="bprev" onclick="dprev()" style="display:none" aria-label="Pregunta anterior">← Anterior</button>
+        <button class="btn btng" id="bnext" onclick="dnext()" disabled aria-label="Siguiente pregunta">Siguiente →</button>
       </div>
     </div>
     <div id="dresult" class="rhide">
@@ -276,34 +329,18 @@ footer{background:var(--n);color:#666;text-align:center;padding:32px 24px}
 <!-- GRÁFICOS -->
 <div class="sec-alt">
 <div class="sec" id="graficos">
-  <div class="stag">Evidencia cuantitativa · Encuesta propia NEXIA (n=50, 2026)</div>
+  <div class="stag">Evidencia cuantitativa · Encuesta propia NEXIA (n=50, mayo 2026)</div>
   <div class="stitle">Los datos que fundamentan el plan</div>
-  <div class="ssub">Resultados reales de nuestra investigación de campo — interpretados con cautela dado el tamaño de la muestra</div>
+  <div class="ssub">Los resultados deben interpretarse con cautela dado el tamaño de la muestra (n=50, muestra de conveniencia). Su valor es exploratorio y orientador.</div>
   <div class="charts-grid">
-    <div class="chart-card">
-      <div class="chart-title">Uso de inteligencia artificial</div>
-      <div class="chart-sub">¿Ha usado alguna herramienta de IA en su empresa?</div>
-      <canvas id="c1" height="200"></canvas>
-    </div>
-    <div class="chart-card">
-      <div class="chart-title">Mayor obstáculo para adoptar IA</div>
-      <div class="chart-sub">¿Cuál es su barrera principal?</div>
-      <canvas id="c2" height="200"></canvas>
-    </div>
-    <div class="chart-card">
-      <div class="chart-title">Canal preferido de información</div>
-      <div class="chart-sub">¿Por qué canal preferiría recibir información?</div>
-      <canvas id="c3" height="200"></canvas>
-    </div>
-    <div class="chart-card">
-      <div class="chart-title">Motivador principal para adoptar IA</div>
-      <div class="chart-sub">¿Qué lo motivaría más a adoptar IA?</div>
-      <canvas id="c4" height="200"></canvas>
-    </div>
+    <div class="chart-card"><div class="chart-title">Uso de inteligencia artificial</div><div class="chart-sub">¿Ha usado alguna herramienta de IA? · Fuente: Encuesta propia NEXIA (2026)</div><canvas id="c1" height="200" aria-label="Gráfico de uso de IA"></canvas></div>
+    <div class="chart-card"><div class="chart-title">Mayor obstáculo para adoptar IA</div><div class="chart-sub">¿Cuál es su barrera principal? · Fuente: Encuesta propia NEXIA (2026)</div><canvas id="c2" height="200" aria-label="Gráfico de obstáculos"></canvas></div>
+    <div class="chart-card"><div class="chart-title">Canal preferido de información</div><div class="chart-sub">¿Por qué canal preferiría recibir información? · Fuente: Encuesta propia NEXIA (2026)</div><canvas id="c3" height="200" aria-label="Gráfico de canales"></canvas></div>
+    <div class="chart-card"><div class="chart-title">Motivador principal para adoptar IA</div><div class="chart-sub">¿Qué lo motivaría más? · Fuente: Encuesta propia NEXIA (2026)</div><canvas id="c4" height="200" aria-label="Gráfico de motivadores"></canvas></div>
   </div>
-  <div class="hallazgo">
+  <div class="hallazgo" role="note">
     <div class="hlbl">Hallazgo contraintuitivo — el más importante del estudio</div>
-    <div class="htxt">Las empresas que <strong style="color:var(--v)">más usan IA</strong> tienen <strong style="color:var(--v)">más miedo</strong> al desempleo tecnológico (3,23/5) que las que nunca la han probado (2,80/5).<br><span style="font-size:12px;opacity:.5;display:block;margin-top:8px">La adopción sin acompañamiento no elimina el miedo — lo amplifica. Por eso NEXIA no implementa IA: reduce el riesgo de adoptarla.</span></div>
+    <div class="htxt">Las empresas que <strong style="color:var(--v)">más usan IA</strong> tienen <strong style="color:var(--v)">más miedo</strong> al desempleo tecnológico (3,23/5) que las que nunca la han probado (2,80/5).<br><span style="font-size:12px;opacity:.5;display:block;margin-top:8px">Fuente: Encuesta propia NEXIA (n=50, 2026). La adopción sin acompañamiento no elimina el miedo — lo amplifica.</span></div>
   </div>
 </div>
 </div>
@@ -312,65 +349,44 @@ footer{background:var(--n);color:#666;text-align:center;padding:32px 24px}
 <div class="sec" id="mapa">
   <div class="stag">Contexto territorial · Colombia 2026</div>
   <div class="stitle">Madurez de IA por región en Colombia</div>
-  <div class="ssub">Haz clic en cada región para ver el detalle de adopción y oportunidades</div>
+  <div class="ssub">Haz clic en cada región para ver el detalle de adopción y oportunidades estratégicas</div>
   <div class="mapa-wrap">
-    <div class="mapa-svg">
-      <svg viewBox="0 0 300 380" style="width:100%;max-height:380px">
-        <text x="150" y="20" text-anchor="middle" font-size="12" font-weight="600" fill="#2C2C2A">Colombia — Adopción de IA</text>
-        <!-- Caribe -->
-        <ellipse cx="150" cy="60" rx="100" ry="35" fill="#9FE1CB" stroke="#0F6E56" stroke-width="1.5" style="cursor:pointer" onclick="showRegion('caribe')" id="r-caribe"/>
-        <text x="150" y="65" text-anchor="middle" font-size="10" fill="#0F6E56" font-weight="600" pointer-events="none">Región Caribe</text>
-        <!-- Andina -->
-        <ellipse cx="140" cy="160" rx="90" ry="55" fill="#5DCAA5" stroke="#0F6E56" stroke-width="1.5" style="cursor:pointer" onclick="showRegion('andina')" id="r-andina"/>
-        <text x="140" y="165" text-anchor="middle" font-size="10" fill="#fff" font-weight="600" pointer-events="none">Región Andina</text>
-        <!-- Pacífico -->
-        <ellipse cx="70" cy="210" rx="40" ry="50" fill="#9FE1CB" stroke="#0F6E56" stroke-width="1.5" style="cursor:pointer" onclick="showRegion('pacifico')" id="r-pacifico"/>
-        <text x="70" y="215" text-anchor="middle" font-size="9" fill="#0F6E56" font-weight="600" pointer-events="none">Pacífico</text>
-        <!-- Orinoquía -->
-        <ellipse cx="230" cy="200" rx="55" ry="45" fill="#E1F5EE" stroke="#1D9E75" stroke-width="1.5" style="cursor:pointer" onclick="showRegion('orinoquia')" id="r-orinoquia"/>
-        <text x="230" y="205" text-anchor="middle" font-size="9" fill="#0F6E56" font-weight="600" pointer-events="none">Orinoquía</text>
-        <!-- Amazonía -->
-        <ellipse cx="180" cy="310" rx="80" ry="45" fill="#E1F5EE" stroke="#1D9E75" stroke-width="1" style="cursor:pointer" onclick="showRegion('amazonia')" id="r-amazonia"/>
-        <text x="180" y="315" text-anchor="middle" font-size="9" fill="#1D9E75" font-weight="600" pointer-events="none">Amazonía</text>
-        <!-- Leyenda -->
-        <rect x="10" y="345" width="12" height="12" fill="#5DCAA5" rx="2"/>
-        <text x="26" y="355" font-size="9" fill="#5F5E5A">Alta madurez</text>
-        <rect x="90" y="345" width="12" height="12" fill="#9FE1CB" rx="2"/>
-        <text x="106" y="355" font-size="9" fill="#5F5E5A">Madurez media</text>
-        <rect x="185" y="345" width="12" height="12" fill="#E1F5EE" rx="2"/>
-        <text x="201" y="355" font-size="9" fill="#5F5E5A">Baja madurez</text>
-      </svg>
+    <div class="mapa-img-wrap">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5f/Colombia_location_map.svg/500px-Colombia_location_map.svg.png"
+           onerror="this.onerror=null;this.src='https://upload.wikimedia.org/wikipedia/commons/thumb/8/8e/Mapa_de_Colombia.svg/400px-Mapa_de_Colombia.svg.png'"
+           alt="Mapa político de Colombia con departamentos" style="width:100%;max-width:300px;border-radius:8px">
+      <div class="mapa-fuente">Fuente del mapa: División político-administrativa de Colombia — IGAC 2023.<br>Datos de madurez: Elaboración propia NEXIA con base en entrevistas a expertos (n=28) y encuesta propia (n=50), mayo 2026.</div>
     </div>
-    <div class="regiones" id="regiones">
-      <div class="region-card active" id="rc-andina" onclick="showRegion('andina')">
-        <div class="reg-name">Región Andina</div>
+    <div class="regiones" id="regiones" role="list">
+      <div class="region-card active" id="rc-andina" onclick="showRegion('andina')" role="listitem" tabindex="0" aria-label="Región Andina">
+        <div class="reg-name">🏔️ Región Andina</div>
         <div class="reg-bar"><div class="reg-fill" style="width:75%"></div></div>
-        <div class="reg-stats"><span>Madurez: Alta</span><span>Empresas con IA: 75%</span></div>
-        <div class="reg-detail show" id="rd-andina">Bogotá, Medellín y Cali concentran el 68% de las empresas con adopción real de IA en Colombia. El sector financiero lidera con 71% de madurez. Principal barrera: costo percibido (55%). Oportunidad: pymes con digitalización básica lista para el siguiente paso.</div>
+        <div class="reg-stats"><span>Madurez: Alta (75%)</span></div>
+        <div class="reg-detail show" id="rd-andina">Bogotá, Medellín y Cali concentran el 68% de las empresas con adopción real de IA en Colombia. El sector financiero lidera con 71% de madurez según los expertos entrevistados. Principal barrera: costo percibido (55% en la encuesta NEXIA). Oportunidad: 45% de Curiosos listos para el siguiente paso con acompañamiento.<div class="reg-fuente">Fuente: Análisis NEXIA de las 28 entrevistas del archivo base + encuesta propia (n=50, 2026).</div></div>
       </div>
-      <div class="region-card" id="rc-caribe" onclick="showRegion('caribe')">
-        <div class="reg-name">Región Caribe</div>
+      <div class="region-card" id="rc-caribe" onclick="showRegion('caribe')" role="listitem" tabindex="0">
+        <div class="reg-name">🌊 Región Caribe</div>
         <div class="reg-bar"><div class="reg-fill" style="width:45%"></div></div>
-        <div class="reg-stats"><span>Madurez: Media</span><span>Empresas con IA: 45%</span></div>
-        <div class="reg-detail" id="rd-caribe">Barranquilla emerge como hub tecnológico del Caribe colombiano. Sectores turismo y comercio están adoptando IA para atención al cliente. Principal barrera: talento especializado escaso. Oportunidad: programas de capacitación en alianza con universidades regionales.</div>
+        <div class="reg-stats"><span>Madurez: Media (45%)</span></div>
+        <div class="reg-detail" id="rd-caribe">Barranquilla emerge como hub tecnológico del Caribe colombiano. Sectores turismo y comercio están adoptando IA para atención al cliente. Principal barrera: talento especializado escaso. Oportunidad: programas de capacitación en alianza con universidades regionales.<div class="reg-fuente">Fuente: Síntesis de entrevistas a expertos — NEXIA (2026). Dato estimado, no estadísticamente representativo.</div></div>
       </div>
-      <div class="region-card" id="rc-pacifico" onclick="showRegion('pacifico')">
-        <div class="reg-name">Región Pacífico</div>
+      <div class="region-card" id="rc-pacifico" onclick="showRegion('pacifico')" role="listitem" tabindex="0">
+        <div class="reg-name">🌿 Región Pacífico</div>
         <div class="reg-bar"><div class="reg-fill" style="width:38%"></div></div>
-        <div class="reg-stats"><span>Madurez: Media-baja</span><span>Empresas con IA: 38%</span></div>
-        <div class="reg-detail" id="rd-pacifico">Cali como polo de innovación, pero Buenaventura y el Pacífico rural muestran baja adopción. Sector agroindustrial con alto potencial para trazabilidad. Principal barrera: conectividad limitada en zonas rurales. Oportunidad: IA para logística portuaria y comercio exterior.</div>
+        <div class="reg-stats"><span>Madurez: Media-baja (38%)</span></div>
+        <div class="reg-detail" id="rd-pacifico">Cali como polo de innovación, pero Buenaventura y el Pacífico rural muestran baja adopción. Alto potencial en sector agroindustrial para trazabilidad. Principal barrera: conectividad limitada en zonas rurales. Oportunidad: IA para logística portuaria y comercio exterior.<div class="reg-fuente">Fuente: Síntesis de entrevistas a expertos — NEXIA (2026). Dato estimado orientador.</div></div>
       </div>
-      <div class="region-card" id="rc-orinoquia" onclick="showRegion('orinoquia')">
-        <div class="reg-name">Orinoquía</div>
+      <div class="region-card" id="rc-orinoquia" onclick="showRegion('orinoquia')" role="listitem" tabindex="0">
+        <div class="reg-name">🌾 Orinoquía</div>
         <div class="reg-bar"><div class="reg-fill" style="width:22%"></div></div>
-        <div class="reg-stats"><span>Madurez: Baja</span><span>Empresas con IA: 22%</span></div>
-        <div class="reg-detail" id="rd-orinoquia">Sector petrolero usa IA para mantenimiento predictivo, pero las pymes están muy rezagadas. Baja conectividad y escasez de talento. Oportunidad: IA para agroindustria y ganadería tecnificada en los Llanos.</div>
+        <div class="reg-stats"><span>Madurez: Baja (22%)</span></div>
+        <div class="reg-detail" id="rd-orinoquia">Sector petrolero usa IA para mantenimiento predictivo, pero las pymes están muy rezagadas. Baja conectividad y escasez de talento. Oportunidad: IA para agroindustria y ganadería tecnificada en los Llanos Orientales.<div class="reg-fuente">Fuente: Síntesis de entrevistas a expertos — NEXIA (2026). Dato estimado orientador.</div></div>
       </div>
-      <div class="region-card" id="rc-amazonia" onclick="showRegion('amazonia')">
-        <div class="reg-name">Amazonía</div>
+      <div class="region-card" id="rc-amazonia" onclick="showRegion('amazonia')" role="listitem" tabindex="0">
+        <div class="reg-name">🌳 Amazonía</div>
         <div class="reg-bar"><div class="reg-fill" style="width:12%"></div></div>
-        <div class="reg-stats"><span>Madurez: Muy baja</span><span>Empresas con IA: 12%</span></div>
-        <div class="reg-detail" id="rd-amazonia">Segmento excluido explícitamente del programa IA Colombia 2026 en su primera fase. La falta de conectividad básica hace inviable la adopción sin intervención previa de infraestructura. CAC proyectado superior a $500.000 por empresa.</div>
+        <div class="reg-stats"><span>Madurez: Muy baja (12%)</span></div>
+        <div class="reg-detail" id="rd-amazonia">Segmento excluido explícitamente del programa IA Colombia 2026 en su primera fase (renuncia estratégica). La falta de conectividad básica hace inviable la adopción sin intervención previa de infraestructura. CAC proyectado superior a $500.000 por empresa con horizonte de conversión mayor a 24 meses.<div class="reg-fuente">Fuente: Renuncia estratégica del plan — NEXIA (2026). Basada en entrevistas a expertos sobre conectividad como barrera estructural.</div></div>
       </div>
     </div>
   </div>
@@ -381,39 +397,39 @@ footer{background:var(--n);color:#666;text-align:center;padding:32px 24px}
 <div class="sec" id="roi">
   <div class="stag">Calculadora de impacto · NEXIA</div>
   <div class="stitle">¿Cuánto puede ahorrar tu empresa con IA?</div>
-  <div class="ssub">Ajusta los sliders según tu empresa y ve el impacto estimado en tiempo real</div>
-  <div class="calc-wrap">
+  <div class="ssub">Ajusta los valores según tu empresa y ve el impacto estimado en tiempo real. Cifras orientadoras sujetas a validación empírica.</div>
+  <div class="calc-wrap" role="application" aria-label="Calculadora de ROI">
     <div class="calc-grid">
       <div class="calc-field">
-        <label>Número de empleados</label>
-        <input type="range" min="1" max="200" value="20" id="sl-emp" oninput="calcROI()">
-        <div class="val" id="v-emp">20 empleados</div>
+        <label for="sl-emp">Número de empleados</label>
+        <input type="range" min="1" max="200" value="20" id="sl-emp" oninput="calcROI()" aria-label="Empleados">
+        <div class="val" id="v-emp" aria-live="polite">20 empleados</div>
       </div>
       <div class="calc-field">
-        <label>Horas semanales en tareas repetitivas</label>
-        <input type="range" min="1" max="40" value="10" id="sl-hrs" oninput="calcROI()">
-        <div class="val" id="v-hrs">10 horas/semana</div>
+        <label for="sl-hrs">Horas semanales en tareas repetitivas</label>
+        <input type="range" min="1" max="40" value="10" id="sl-hrs" oninput="calcROI()" aria-label="Horas semanales">
+        <div class="val" id="v-hrs" aria-live="polite">10 horas/semana</div>
       </div>
       <div class="calc-field">
-        <label>Salario promedio mensual por empleado</label>
-        <input type="range" min="1000000" max="10000000" step="500000" value="2000000" id="sl-sal" oninput="calcROI()">
-        <div class="val" id="v-sal">$2.000.000</div>
+        <label for="sl-sal">Salario promedio mensual</label>
+        <input type="range" min="1000000" max="10000000" step="500000" value="2000000" id="sl-sal" oninput="calcROI()" aria-label="Salario mensual">
+        <div class="val" id="v-sal" aria-live="polite">$2.000.000</div>
       </div>
       <div class="calc-field">
-        <label>Reducción estimada de tiempo con IA</label>
-        <input type="range" min="10" max="70" value="30" id="sl-red" oninput="calcROI()">
-        <div class="val" id="v-red">30%</div>
+        <label for="sl-red">Reducción estimada de tiempo con IA</label>
+        <input type="range" min="10" max="70" value="30" id="sl-red" oninput="calcROI()" aria-label="Reducción de tiempo">
+        <div class="val" id="v-red" aria-live="polite">30%</div>
       </div>
     </div>
     <div style="border-top:1px solid #F1EFE8;padding-top:20px">
       <div style="font-size:12px;font-weight:600;color:var(--g);margin-bottom:12px;text-transform:uppercase;letter-spacing:1px">Impacto estimado para tu empresa</div>
-      <div class="calc-results">
-        <div class="calc-res"><div class="calc-res-num" id="r-ahorro">$600.000</div><div class="calc-res-label">Ahorro mensual</div></div>
+      <div class="calc-results" aria-live="polite">
+        <div class="calc-res"><div class="calc-res-num" id="r-ahorro">$600.000</div><div class="calc-res-label">Ahorro mensual estimado</div></div>
         <div class="calc-res"><div class="calc-res-num" id="r-horas">24 hrs</div><div class="calc-res-label">Horas liberadas/mes</div></div>
         <div class="calc-res"><div class="calc-res-num" id="r-roi">400%</div><div class="calc-res-label">ROI mensual estimado</div></div>
       </div>
     </div>
-    <p class="calc-note">* Estas estimaciones son orientadoras. El impacto real depende del sector, tipo de tareas y nivel de implementación. NEXIA valida el impacto real en 30 días de piloto.</p>
+    <p class="calc-note">* Estimaciones orientadoras. No incluyen costos indirectos ni garantizan resultados. El impacto real se valida en 30 días de piloto con NEXIA. Fuente del modelo: elaboración propia NEXIA con base en datos de la encuesta (n=50, 2026).</p>
   </div>
 </div>
 </div>
@@ -421,51 +437,84 @@ footer{background:var(--n);color:#666;text-align:center;padding:32px 24px}
 <!-- TIMELINE -->
 <div class="sec" id="timeline">
   <div class="stag">Hoja de ruta · IA Colombia 2026</div>
-  <div class="stitle">Plan de implementación — 6 meses</div>
-  <div class="ssub">De la conciencia a la fidelización — cada fase tiene un hito verificable</div>
+  <div class="stitle">Plan de implementación — 6 meses con valores reales</div>
+  <div class="ssub">Cada fase tiene un hito verificable, KPIs concretos y métricas de control del Balanced Scorecard</div>
   <div class="tl">
     <div class="tl-item">
       <div class="tl-dot">1</div>
-      <div class="tl-mes">Mes 1 — Lanzamiento</div>
+      <div class="tl-mes">Mes 1 — Junio 2026 · Lanzamiento</div>
       <div class="tl-titulo">Presencia real en el mercado</div>
-      <div class="tl-desc">Web + QR activos. Encuesta de diagnóstico distribuida a 500 empresas. Primer video testimonial publicado en WhatsApp Business. Logo NEXIA y materiales de campaña listos.</div>
-      <span class="tl-hito">Hito: 1.000 contactos impactados · Web online</span>
+      <div class="tl-desc">Página web NEXIA activa con QR. Encuesta de diagnóstico distribuida a 500 contactos empresariales por WhatsApp Business. Primer video testimonial publicado (Laura Velandia, Peluquería Guadalupe). Logo e identidad NEXIA desplegados.</div>
+      <div class="tl-kpis">
+        <span class="tl-kpi">Meta: 1.000 impactos</span>
+        <span class="tl-kpi">Inversión: $200.000</span>
+        <span class="tl-kpi">CAC objetivo: $100.000</span>
+      </div>
+      <span class="tl-hito">✓ Hito: Web online · QR funcional · 500 contactos impactados</span>
     </div>
     <div class="tl-item">
       <div class="tl-dot">2</div>
-      <div class="tl-mes">Mes 2 — Conciencia</div>
+      <div class="tl-mes">Mes 2 — Julio 2026 · Conciencia</div>
       <div class="tl-titulo">Activación masiva por WhatsApp</div>
-      <div class="tl-desc">Campaña WhatsApp a 5.000 contactos empresariales. Primer taller presencial en Cámara de Comercio de Bogotá. Webinar gratuito para el sector retail con casos de éxito documentados.</div>
-      <span class="tl-hito">Hito: 500 aperturas de mensaje (tasa 10%)</span>
+      <div class="tl-desc">Campaña WhatsApp Business a 5.000 contactos empresariales segmentados por arquetipo. Primer taller presencial en Cámara de Comercio de Bogotá (2 horas, gratuito). Webinar online sector retail: "Tu primera herramienta de IA en 10 minutos". Costo del taller: $150.000 (salón + materiales).</div>
+      <div class="tl-kpis">
+        <span class="tl-kpi">Meta: 500 aperturas (10%)</span>
+        <span class="tl-kpi">Inversión: $350.000</span>
+        <span class="tl-kpi">KPI: tasa de apertura WhatsApp</span>
+      </div>
+      <span class="tl-hito">✓ Hito: 500 aperturas · 50 asistentes al taller</span>
     </div>
     <div class="tl-item">
       <div class="tl-dot">3</div>
-      <div class="tl-mes">Mes 3 — Interés</div>
-      <div class="tl-titulo">Evidencia y credibilidad</div>
-      <div class="tl-desc">Publicación de 3 casos de éxito documentados con métricas reales. Calculadora de ahorro online activa. Webinar sector salud con alianza de inclusión activada.</div>
-      <span class="tl-hito">Hito: 50 solicitudes de diagnóstico recibidas</span>
+      <div class="tl-mes">Mes 3 — Agosto 2026 · Interés</div>
+      <div class="tl-titulo">Evidencia y credibilidad con casos reales</div>
+      <div class="tl-desc">Publicación de 3 casos de éxito documentados con métricas reales (ahorro en horas, reducción de costos). Calculadora de ROI online activa. Webinar sector salud con alianza inclusiva activada (Saldarriaga Concha). Validación del Experimento 1: percepción de riesgo antes/después del taller.</div>
+      <div class="tl-kpis">
+        <span class="tl-kpi">Meta: 50 solicitudes diagnóstico</span>
+        <span class="tl-kpi">Inversión: $400.000</span>
+        <span class="tl-kpi">KPI: cambio en Likert de miedo</span>
+      </div>
+      <span class="tl-hito">✓ Hito: 3 casos publicados · 50 diagnósticos solicitados</span>
     </div>
     <div class="tl-item">
       <div class="tl-dot">4</div>
-      <div class="tl-mes">Mes 4 — Consideración</div>
-      <div class="tl-titulo">Embajadores y alianzas</div>
-      <div class="tl-desc">Programa de embajadores sectoriales activo (10 empresas). Taller en Medellín. Alianza Saldarriaga Concha activada para el segmento inclusivo. Primera empresa inclusiva con IA accesible implementada.</div>
-      <span class="tl-hito">Hito: 10 embajadores · Primera empresa inclusiva</span>
+      <div class="tl-mes">Mes 4 — Septiembre 2026 · Consideración</div>
+      <div class="tl-titulo">Embajadores y alianzas estratégicas</div>
+      <div class="tl-desc">Programa de 10 embajadores sectoriales activo (empresas que completaron piloto exitoso). Taller presencial en Cámara de Comercio Medellín. Alianza Saldarriaga Concha activada: webinar de inclusión con 20 empresas del segmento inclusivo clave. Primera empresa con IA accesible implementada documentada.</div>
+      <div class="tl-kpis">
+        <span class="tl-kpi">Meta: 10 embajadores</span>
+        <span class="tl-kpi">Inversión: $500.000</span>
+        <span class="tl-kpi">KPI: NPS embajadores >50</span>
+      </div>
+      <span class="tl-hito">✓ Hito: 10 embajadores · 1 empresa inclusiva documentada</span>
     </div>
     <div class="tl-item">
       <div class="tl-dot">5</div>
-      <div class="tl-mes">Mes 5 — Acción</div>
-      <div class="tl-titulo">50 pilotos en marcha</div>
-      <div class="tl-desc">50 pilotos guiados iniciados con acompañamiento NEXIA. Primer informe de impacto publicado con métricas reales verificables. Medición NPS por primera vez.</div>
-      <span class="tl-hito">Hito: 50 pilotos activos · Primer informe de impacto</span>
+      <div class="tl-mes">Mes 5 — Octubre 2026 · Acción</div>
+      <div class="tl-titulo">50 pilotos guiados en marcha</div>
+      <div class="tl-desc">50 pilotos guiados de 90 días iniciados con acompañamiento NEXIA. Inversión promedio por empresa: $150.000/mes × 3 meses = $450.000 CLV inicial. Primer informe de impacto publicado con métricas reales verificables. Primera medición de NPS post-piloto. Validación del Experimento 2: conversión y CAC real.</div>
+      <div class="tl-kpis">
+        <span class="tl-kpi">Meta: 50 pilotos activos</span>
+        <span class="tl-kpi">Ingreso potencial: $7.500.000</span>
+        <span class="tl-kpi">KPI: Churn <5% mensual</span>
+      </div>
+      <span class="tl-hito">✓ Hito: 50 pilotos · Primer informe de impacto real</span>
     </div>
     <div class="tl-item">
       <div class="tl-dot">6</div>
-      <div class="tl-mes">Mes 6 — Fidelización</div>
-      <div class="tl-titulo">Resultados y segunda cohorte</div>
-      <div class="tl-desc">Evento de reconocimiento a empresas pioneras. Resultados de los 30 pilotos completados publicados con NPS real. Apertura de la convocatoria para la segunda cohorte.</div>
-      <span class="tl-hito">Hito: 30 pilotos con resultado documentado · NPS medido</span>
+      <div class="tl-mes">Mes 6 — Noviembre 2026 · Fidelización</div>
+      <div class="tl-titulo">Resultados verificables y segunda cohorte</div>
+      <div class="tl-desc">Evento de reconocimiento a 30 empresas que completaron el piloto. Publicación de resultados con NPS real medido. Validación final del Experimento 3: eficacia del mensaje inclusivo como argumento comercial. Apertura convocatoria segunda cohorte con lista de espera. Ratio CLV/CAC medido por primera vez con datos reales.</div>
+      <div class="tl-kpis">
+        <span class="tl-kpi">Meta: 30 pilotos con resultado</span>
+        <span class="tl-kpi">NPS objetivo: >50</span>
+        <span class="tl-kpi">CLV/CAC real medido</span>
+      </div>
+      <span class="tl-hito">✓ Hito: 30 casos documentados · NPS medido · Cohorte 2 abierta</span>
     </div>
+  </div>
+  <div style="background:#F1EFE8;border-radius:12px;padding:16px;margin-top:16px;font-size:12px;color:var(--g)">
+    <strong>Nota metodológica:</strong> Los valores de inversión e ingresos son supuestos orientadores del escenario base. No constituyen proyección financiera definitiva. El ratio CLV/CAC de 54x y el CAC de $100.000 serán validados empíricamente en el Experimento 2 durante el mes 5. Elaboración propia NEXIA (2026).
   </div>
 </div>
 
@@ -474,23 +523,23 @@ footer{background:var(--n);color:#666;text-align:center;padding:32px 24px}
 <div class="sec" id="entrevistas">
   <div class="stag">Fuentes primarias · Trabajo de campo NEXIA</div>
   <div class="stitle">Lo que dijeron los expertos</div>
-  <div class="ssub">Tres entrevistas propias del equipo NEXIA + 28 del archivo base de la investigación</div>
+  <div class="ssub">Tres entrevistas propias del equipo NEXIA realizadas en mayo 2026, más 28 entrevistas del archivo base de la investigación</div>
   <div class="ent-grid">
     <div class="ent-card">
-      <div class="eav" style="background:#1D9E75">LB</div>
-      <div class="ename">Laura Belandia</div>
+      <div class="eav" style="background:#1D9E75" aria-label="Laura Velandia">LV</div>
+      <div class="ename">Laura Velandia</div>
       <div class="ecargo">Administradora · Peluquería Guadalupe · Bogotá · Arquetipo: Curiosa</div>
       <div class="equote">"Utilizamos ChatGPT para automatizar el agendamiento de citas. Antes perdíamos clientes por falta de respuesta inmediata. El mayor obstáculo es no saber cómo comunicarse con la herramienta — no saber 'promptear'."</div>
     </div>
     <div class="ent-card">
-      <div class="eav" style="background:#185FA5">PC</div>
+      <div class="eav" style="background:#185FA5" aria-label="Paola Contreras">PC</div>
       <div class="ename">Paola Contreras</div>
       <div class="ecargo">Administradora · CM Lab · Sector Salud e Industrial · Arquetipo: Activadora</div>
       <div class="equote">"Los algoritmos nos ayudan a predecir las fallas en los diagnósticos. La barrera más que todo es el alto costo de las importaciones y la falta de capacitación a estas nuevas herramientas."</div>
     </div>
     <div class="ent-card">
-      <div class="eav" style="background:#534AB7">GM</div>
-      <div class="ename">Gabriel Martínez</div>
+      <div class="eav" style="background:#534AB7" aria-label="Gabriel Martínez">GM</div>
+      <div class="ename">Gabriel Alexander Martínez</div>
       <div class="ecargo">Profesional especializado · Ministerio TIC Colombia · Perspectiva: Política pública</div>
       <div class="equote">"Ha faltado comunicación y publicidad para llegar a las empresas. Muchas no conocen el CONPES 4144 ni sus incentivos. El éxito se mediría demostrando bondades reales, como ocurrió con la adopción del internet."</div>
     </div>
@@ -502,17 +551,17 @@ footer{background:var(--n);color:#666;text-align:center;padding:32px 24px}
 <div class="sec" id="chat">
   <div class="stag">Asistente virtual · NEXIA</div>
   <div class="stitle">Pregúntale a NEXIA</div>
-  <div class="ssub">Pregunta sobre arquetipos, costos, inclusión, CONPES o cualquier aspecto del plan</div>
-  <div class="chat-wrap">
+  <div class="ssub">Chatea sobre arquetipos, costos, inclusión o el CONPES 4144. Tus preguntas nos ayudan a mejorar el programa.</div>
+  <div class="chat-wrap" role="complementary" aria-label="Chat con NEXIA">
     <div class="chat-header">
-      <div class="chat-av">N</div>
-      <div class="chat-info"><h4>NEXIA — Asistente IA Colombia 2026</h4><p>Estrategia & Inteligencia</p></div>
-      <div class="chat-dot" style="margin-left:auto"></div>
+      <div class="chat-av" aria-hidden="true">N</div>
+      <div class="chat-info"><h4>NEXIA — Asistente IA Colombia 2026</h4><p>Responde preguntas sobre el plan estratégico</p></div>
+      <div class="chat-dot" style="margin-left:auto" aria-label="En línea"></div>
     </div>
-    <div class="chat-msgs" id="chatmsgs">
-      <div class="msg msg-bot">¡Hola! Soy el asistente de NEXIA. Puedo explicarte sobre los arquetipos de adopción, el CONPES 4144, los costos del programa, inclusión con IA o cualquier aspecto del plan IA Colombia 2026. ¿Qué quieres saber?</div>
+    <div class="chat-msgs" id="chatmsgs" role="log" aria-live="polite">
+      <div class="msg msg-bot">¡Hola! Soy el asistente de NEXIA. Puedo explicarte sobre los arquetipos de adopción, el CONPES 4144, los costos del programa, inclusión con IA o el hallazgo más importante del estudio. ¿Qué quieres saber?</div>
     </div>
-    <div class="chat-sugs" id="chatsugs">
+    <div class="chat-sugs" id="chatsugs" aria-label="Preguntas sugeridas">
       <button class="sug" onclick="chatSug(this)">¿Qué es un Curioso?</button>
       <button class="sug" onclick="chatSug(this)">¿Cuánto cuesta el programa?</button>
       <button class="sug" onclick="chatSug(this)">¿Qué es el CONPES 4144?</button>
@@ -520,9 +569,10 @@ footer{background:var(--n);color:#666;text-align:center;padding:32px 24px}
       <button class="sug" onclick="chatSug(this)">¿Qué herramientas de IA son gratuitas?</button>
     </div>
     <div class="chat-input">
-      <input type="text" id="chatinput" placeholder="Escribe tu pregunta aquí..." onkeydown="if(event.key==='Enter')sendChat()">
-      <button onclick="sendChat()">Enviar</button>
+      <input type="text" id="chatinput" placeholder="Escribe tu pregunta aquí..." onkeydown="if(event.key==='Enter')sendChat()" aria-label="Escribe tu mensaje">
+      <button onclick="sendChat()" aria-label="Enviar mensaje">Enviar</button>
     </div>
+    <div class="chat-nota">💡 Tus mensajes nos ayudan a mejorar el programa. Se registran de forma anónima para análisis estratégico de NEXIA.</div>
   </div>
 </div>
 
@@ -531,41 +581,41 @@ footer{background:var(--n);color:#666;text-align:center;padding:32px 24px}
 <div class="sec" id="inclusion">
   <div class="stag">Diferencial estratégico · NEXIA</div>
   <div class="stitle">Inclusión como ventaja competitiva</div>
-  <div class="ssub">No es responsabilidad social. Es una oportunidad de mercado no atendida.</div>
+  <div class="ssub">No es responsabilidad social. Es una oportunidad de mercado no atendida, con incentivos tributarios reales disponibles hoy.</div>
   <div class="inc-full">
     <div class="inc-hero">
       <h3>La brecha más grande del mercado colombiano de IA</h3>
-      <p>Y la oportunidad más desaprovechada — con incentivos tributarios disponibles hoy</p>
+      <p>Y la oportunidad más desaprovechada — con marco legal y herramientas disponibles hoy</p>
     </div>
     <div class="inc-content">
       <div class="inc-stat">
-        <div class="isn">12%</div>
-        <div class="ist"><strong>Solo el 12% de los 3,1 millones de colombianos con discapacidad tiene empleo formal</strong> (DANE, 2023). La IA accesible puede eliminar las barreras operativas para su vinculación laboral, generando valor económico, tributario y social simultáneamente.</div>
+        <div class="isn" aria-label="12 por ciento">12%</div>
+        <div class="ist"><strong>Solo el 12% de los 3,1 millones de colombianos con discapacidad tiene empleo formal</strong> (DANE, Registro de Localización y Caracterización de Personas con Discapacidad, 2023). La IA accesible puede cambiar eso hoy, con herramientas desde cero pesos de inversión.</div>
       </div>
-      <p style="font-size:14px;font-weight:600;margin-bottom:10px">Herramientas de IA accesible disponibles en Colombia — costo de entrada: $0</p>
+      <p style="font-size:14px;font-weight:600;margin-bottom:10px">Herramientas de IA accesible en Colombia — inversión inicial: $0</p>
       <div class="tools-g">
-        <div class="tool-c"><div class="tn">Seeing AI</div><div class="td">Describe imágenes y lee texto para personas con discapacidad visual</div><span class="tcost">Gratuita</span></div>
-        <div class="tool-c"><div class="tn">Google Live Caption</div><div class="td">Subtitulación automática en tiempo real para personas sordas</div><span class="tcost">Gratuita</span></div>
-        <div class="tool-c"><div class="tn">Copilot + Narrador</div><div class="td">Control por voz e IA para personas con discapacidad motriz</div><span class="tcost">Gratuita</span></div>
-        <div class="tool-c"><div class="tn">Otter.ai</div><div class="td">Transcripción automática de reuniones para personas sordas</div><span class="tcost">Freemium</span></div>
-        <div class="tool-c"><div class="tn">Be My Eyes</div><div class="td">Asistencia visual por IA en tiempo real</div><span class="tcost">Gratuita</span></div>
-        <div class="tool-c"><div class="tn">Voice Control</div><div class="td">Control del dispositivo por voz en iOS y Android</div><span class="tcost">Gratuita</span></div>
+        <div class="tool-c"><div class="tn">Seeing AI</div><div class="td">Describe imágenes y lee texto en voz alta para personas con discapacidad visual. Disponible en iOS.</div><span class="tcost">Gratuita</span></div>
+        <div class="tool-c"><div class="tn">Google Live Caption</div><div class="td">Subtitulación automática en tiempo real de audio para personas sordas o con hipoacusia.</div><span class="tcost">Gratuita</span></div>
+        <div class="tool-c"><div class="tn">Copilot + Narrador</div><div class="td">Control por voz e IA integrada para personas con discapacidad motriz. Incluido en Windows.</div><span class="tcost">Gratuita</span></div>
+        <div class="tool-c"><div class="tn">Otter.ai</div><div class="td">Transcripción automática de reuniones para facilitar comunicación con personas sordas.</div><span class="tcost">Freemium</span></div>
+        <div class="tool-c"><div class="tn">Be My Eyes</div><div class="td">Asistencia visual por IA en tiempo real para tareas laborales cotidianas.</div><span class="tcost">Gratuita</span></div>
+        <div class="tool-c"><div class="tn">Voice Control</div><div class="td">Control completo del dispositivo por voz en iOS y Android para movilidad reducida.</div><span class="tcost">Gratuita</span></div>
       </div>
       <div class="leyes">
         <div class="ley" style="background:var(--vc);color:var(--vd)">
           <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:1px;margin-bottom:5px">Ley 1618 de 2013</div>
           <div style="font-size:13px;font-weight:600;margin-bottom:4px">Obligación legal verificable</div>
-          <div style="font-size:12px;opacity:.85">Las empresas deben garantizar inclusión laboral de personas con discapacidad. La IA accesible hace viable esta obligación sin costos desproporcionados.</div>
+          <div style="font-size:12px;opacity:.85">Las empresas deben garantizar el pleno ejercicio del derecho al trabajo de personas con discapacidad en condiciones de igualdad. La IA accesible hace viable esta obligación sin costos desproporcionados.</div>
         </div>
         <div class="ley" style="background:var(--ac);color:#663800">
           <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:1px;margin-bottom:5px">Ley 361 de 1997</div>
           <div style="font-size:13px;font-weight:600;margin-bottom:4px">Incentivo tributario real</div>
-          <div style="font-size:12px;opacity:.85">Las empresas que contraten personas con discapacidad acceden a beneficios tributarios verificables. La inclusión reduce costos fiscales — no los incrementa.</div>
+          <div style="font-size:12px;opacity:.85">Las empresas que contraten personas con discapacidad acceden a beneficios tributarios verificables. La inclusión reduce la carga fiscal — no la incrementa. Consultar con asesor tributario para casos específicos.</div>
         </div>
       </div>
       <div style="background:var(--n);border-radius:12px;padding:20px;margin-top:16px;text-align:center;color:#fff">
-        <div style="font-size:13px;font-style:italic;color:#aaa;margin-bottom:8px">"La innovación no es real si no es para todos. Cuando las marcas líderes priorizan la accesibilidad, envían un mensaje potente: todos merecen ser parte de la narrativa."</div>
-        <div style="font-size:11px;color:var(--v)">— Carolina Pinzón Echeverry · Especialista en inclusión laboral · Fundación Escuchamos · LinkedIn, mayo 2026</div>
+        <div style="font-size:13px;font-style:italic;color:#aaa;margin-bottom:8px">"La innovación no es real si no es para todos. El diseño universal no es una característica adicional, sino una responsabilidad. Cuando las marcas líderes priorizan la accesibilidad, envían un mensaje potente: todos merecen ser parte de la narrativa."</div>
+        <div style="font-size:11px;color:var(--v)">— Carolina Pinzón Echeverry · Especialista en Diversidad e Inclusión Laboral · Fundación Escuchamos · Bogotá · LinkedIn, mayo 2026</div>
       </div>
     </div>
   </div>
@@ -573,16 +623,38 @@ footer{background:var(--n);color:#666;text-align:center;padding:32px 24px}
 </div>
 
 <!-- FOOTER -->
-<footer>
+<footer role="contentinfo">
   <div class="flogo"><span>N</span>EXIA</div>
   <div class="ffrase">Transformamos miedo en evolución.</div>
-  <p>Universidad Militar Nueva Granada · Gerencia de Mercadeo · Séptimo Semestre · 2026</p>
+  <p>Universidad Militar Nueva Granada · Facultad de Ciencias Económicas · Gerencia de Mercadeo · Séptimo Semestre · 2026</p>
   <p style="margin-top:6px;font-size:11px">Yuliet Carolina Garzón Alfonso · Cesar Augusto Bonilla Gil · Darcy Sabrina Ortiz Almanza · Santiago Pira Rubio</p>
-  <p style="margin-top:6px;font-size:11px">NEXIA no implementa inteligencia artificial. NEXIA reduce el riesgo de adoptarla.</p>
+  <p style="margin-top:6px;font-size:11px;color:var(--v)">NEXIA no implementa inteligencia artificial. NEXIA reduce el riesgo de adoptarla.</p>
+  <p style="margin-top:8px;font-size:10px;opacity:.5">Este sitio está optimizado para accesibilidad. Compatible con lectores de pantalla NVDA, VoiceOver y Seeing AI.</p>
 </footer>
 
 <script>
-// ── CONTADORES ANIMADOS ──────────────────────────────────────────────
+// ── ACCESIBILIDAD ─────────────────────────────────────────────────────
+function toggleAcc(cls,btnId){
+  document.body.classList.toggle(cls);
+  const btn=document.getElementById(btnId);
+  const isOn=document.body.classList.contains(cls);
+  btn.classList.toggle('on',isOn);
+  btn.setAttribute('aria-pressed',isOn);
+}
+function leerPagina(){
+  if('speechSynthesis' in window){
+    window.speechSynthesis.cancel();
+    const texto=document.body.innerText.substring(0,3000);
+    const u=new SpeechSynthesisUtterance(texto);
+    u.lang='es-CO';u.rate=0.9;u.pitch=1;
+    window.speechSynthesis.speak(u);
+  } else alert('Tu navegador no soporta lectura en voz alta. Usa Chrome o Edge.');
+}
+function detenerLectura(){
+  if('speechSynthesis' in window) window.speechSynthesis.cancel();
+}
+
+// ── CONTADORES ANIMADOS ───────────────────────────────────────────────
 function animateCounters(){
   document.querySelectorAll('.cnum[data-target]').forEach(el=>{
     const target=+el.dataset.target, suffix=el.dataset.suffix||'';
@@ -597,7 +669,7 @@ function animateCounters(){
 const obs=new IntersectionObserver(e=>{if(e[0].isIntersecting){animateCounters();obs.disconnect();}},{threshold:.3});
 obs.observe(document.querySelector('.counters'));
 
-// ── DIAGNÓSTICO ──────────────────────────────────────────────────────
+// ── DIAGNÓSTICO ───────────────────────────────────────────────────────
 const DQ=[
   {t:"¿Tu empresa ha usado alguna herramienta de inteligencia artificial?",o:["Sí, la usamos regularmente con resultados claros","La hemos probado alguna vez, pero sin profundizar","No, nunca la hemos usado","No sé si lo que usamos cuenta como IA"]},
   {t:"¿Qué tanto te preocupa que la IA pueda reemplazar empleos en tu empresa?",o:["Mucho — es mi mayor preocupación","Algo — lo pienso pero no me paraliza","Poco — creo que potencia a los equipos","No lo había pensado en esos términos"]},
@@ -609,26 +681,26 @@ const DR={
   resistente:{badge:"Resistente",bc:"#FAECE7",bcolor:"#993C1D",
     desc:"Tu empresa reconoce la necesidad pero el miedo es la barrera principal. No es falta de recursos — es falta de evidencia concreta de que la IA potencia al equipo, no lo reemplaza.",
     plan:[
-      {l:"El problema",bg:"#FAECE7",tc:"#993C1D",t:"El miedo es real y válido",d:"El 64% de los expertos que entrevistamos identifica la resistencia cultural como la barrera #1 en Colombia. Tu preocupación es la más común del mercado.",s:[]},
-      {l:"Paso 1 — Esta semana",bg:"#E1F5EE",tc:"#0F6E56",t:"Prueba una herramienta sin decirle IA a tu equipo",d:"Usa ChatGPT para redactar un correo o responder un cliente. Solo tú. Sin anunciarlo. Mide el tiempo que te tomó versus antes.",s:["Entra a chat.openai.com — es gratis","Escribe: Ayúdame a responder este correo de cliente...","Mide cuántos minutos te ahorró"]},
-      {l:"Paso 2 — Primer mes",bg:"#E1F5EE",tc:"#0F6E56",t:"Piloto de 30 días privado",d:"Antes de hablarle a tu equipo, úsala tú en 3 tareas repetitivas. Cuando tengas resultado, entonces muéstraselo.",s:["Identifica 3 tareas que repites cada semana","Automatízalas con ChatGPT o Copilot","Documenta el tiempo ahorrado con números reales"]},
-      {l:"Paso 3 — NEXIA propone",bg:"#0F6E56",tc:"#fff",t:"Piloto guiado: sin costo, sin compromiso",d:"Un consultor NEXIA acompaña a tu empresa 30 días. Si no hay ahorro real verificable, no hay compromiso de continuidad.",s:["30 días de acompañamiento personalizado","Una herramienta implementada en tu negocio real","Resultado medible antes de cualquier pago"]}
+      {l:"El problema",bg:"#FAECE7",tc:"#993C1D",t:"El miedo es real y válido",d:"El 64% de los expertos entrevistados por NEXIA identifica la resistencia cultural como la barrera #1 en Colombia. Tu preocupación es la más común del mercado.",s:[]},
+      {l:"Paso 1 — Esta semana",bg:"#E1F5EE",tc:"#0F6E56",t:"Prueba IA en privado — sin anunciarlo a tu equipo",d:"Usa ChatGPT para redactar un correo difícil o responder una queja de cliente. Solo tú. Mide el tiempo que te tomó versus antes.",s:["Entra a chat.openai.com — es completamente gratuito","Escribe: 'Ayúdame a responder este correo de un cliente molesto...'","Mide: ¿cuántos minutos te ahorró?"]},
+      {l:"Paso 2 — Primer mes",bg:"#E1F5EE",tc:"#0F6E56",t:"Piloto privado en 3 tareas repetitivas",d:"Antes de hablarle a tu equipo, úsala tú en 3 tareas que repites cada semana. Cuando tengas el resultado concreto, entonces compártelo.",s:["Tarea 1: redacción de correos y comunicaciones (ahorra ~30 min/día)","Tarea 2: creación de contenido para redes sociales (ahorra ~1 hora/semana)","Tarea 3: análisis de retroalimentación de clientes (ahorra ~2 horas/semana)"]},
+      {l:"Paso 3 — NEXIA propone",bg:"#0F6E56",tc:"#fff",t:"Piloto guiado de 30 días — sin costo, sin compromiso",d:"Un consultor NEXIA acompaña a tu empresa durante 30 días. Si no hay un ahorro real y verificable en tu propio negocio, no hay ningún compromiso de continuidad.",s:["30 días de acompañamiento personalizado desde $0 (piloto gratuito)","Una herramienta implementada directamente en tus procesos reales","Resultado medible en pesos y horas antes de cualquier decisión de pago"]}
     ]},
   curioso:{badge:"Curioso",bc:"#E1F5EE",bcolor:"#0F6E56",
     desc:"Quieres adoptarla, ves el potencial, pero no encuentras la ruta de entrada. Tu barrera no es el dinero — es no saber por dónde empezar sin arriesgar tiempo ni recursos.",
     plan:[
-      {l:"El problema",bg:"#E6F1FB",tc:"#185FA5",t:"La parálisis del primer paso",d:"El 26% de las empresas encuestadas identifica 'no saber cómo empezar' como su mayor obstáculo. Tienes la disposición — lo que falta es la ruta.",s:[]},
-      {l:"Paso 1 — Hoy mismo",bg:"#E1F5EE",tc:"#0F6E56",t:"Tu primera herramienta en 10 minutos",d:"WhatsApp Business + mensajes automáticos = tu primer caso de uso de IA. Costo: $0. Tiempo: 10 minutos.",s:["Descarga WhatsApp Business (gratis)","Activa mensajes automáticos de bienvenida","Configura respuestas para las 5 preguntas más frecuentes"]},
-      {l:"Paso 2 — Primera semana",bg:"#E1F5EE",tc:"#0F6E56",t:"ChatGPT para 3 tareas de tu negocio",d:"ChatGPT gratuito puede ayudarte con correos, publicaciones para redes y análisis de retroalimentación de clientes.",s:["Correos de clientes: ahorra 30 min/día","Contenido para redes: ahorra 1 hora/semana","Resumen de retroalimentación: ahorra 2 horas/semana"]},
-      {l:"Paso 3 — NEXIA propone",bg:"#1D9E75",tc:"#fff",t:"De cero a tu primer caso de uso en 90 días",d:"Una hoja de ruta de 3 pasos, acompañamiento de consultor NEXIA, desde $70.000 pesos al mes. Sin conocimiento técnico previo.",s:["Semana 1-4: diagnóstico y primera herramienta implementada","Semana 5-8: automatización de proceso con resultado medible","Semana 9-12: caso de éxito documentado y compartible"]}
+      {l:"El problema",bg:"#E6F1FB",tc:"#185FA5",t:"La parálisis del primer paso",d:"El 26% de las 50 empresas encuestadas por NEXIA identifica 'no saber cómo empezar' como su mayor obstáculo. Tienes la disposición — lo que falta es la hoja de ruta.",s:[]},
+      {l:"Paso 1 — Hoy mismo (10 minutos)",bg:"#E1F5EE",tc:"#0F6E56",t:"WhatsApp Business + respuestas automáticas",d:"Esta es tu primera herramienta de IA. Gratuita. Sin conocimiento técnico. Implementable en 10 minutos.",s:["Descarga WhatsApp Business en tu celular (completamente gratis)","Ve a Configuración → Herramientas de empresa → Mensajes automáticos","Activa mensaje de bienvenida y configura 5 respuestas rápidas para las preguntas más frecuentes"]},
+      {l:"Paso 2 — Primera semana",bg:"#E1F5EE",tc:"#0F6E56",t:"ChatGPT para 3 tareas concretas",d:"Gratuito en chat.openai.com. Úsalo esta semana para estas 3 tareas específicas de tu negocio:",s:["Correos a clientes (ahorra ~30 minutos por día)","Publicaciones para Instagram o Facebook (ahorra ~1 hora por semana)","Resumen de retroalimentación de clientes (ahorra ~2 horas por semana)"]},
+      {l:"Paso 3 — NEXIA propone",bg:"#1D9E75",tc:"#fff",t:"De cero a tu primer caso de uso en 90 días",d:"Una hoja de ruta personalizada de 3 pasos, acompañamiento de un consultor NEXIA, desde $70.000 pesos al mes. Sin conocimiento técnico previo requerido.",s:["Semanas 1-4: diagnóstico de tu empresa + primera herramienta implementada","Semanas 5-8: automatización de un proceso repetitivo con resultado medible en pesos","Semanas 9-12: caso de éxito documentado y listo para compartir con tu sector"]}
     ]},
   activador:{badge:"Activador",bc:"#E6F1FB",bcolor:"#185FA5",
     desc:"Ya usas IA, pero cada área hace lo suyo sin coordinación ni métricas. Pasaste de usarla a depender de ella — ahora es el momento de liderarla estratégicamente.",
     plan:[
-      {l:"El problema",bg:"#EEEDFE",tc:"#534AB7",t:"Uso sin gobernanza",d:"El 88% dice usar IA pero solo el 20% tiene resultados medibles. Estás usando IA — pero ¿sabes exactamente cuánto te está generando o ahorrando?",s:[]},
-      {l:"Paso 1 — Esta semana",bg:"#E1F5EE",tc:"#0F6E56",t:"Inventario de IA en tu empresa",d:"Antes de estructurar, necesitas saber qué tienes. Este inventario toma 30 minutos.",s:["Lista todas las herramientas de IA que usa tu equipo","Identifica quién las usa, para qué y con qué frecuencia","Mide el impacto actual: ¿cuánto tiempo ahorran por semana?"]},
-      {l:"Paso 2 — Primer mes",bg:"#E1F5EE",tc:"#0F6E56",t:"Define 3 métricas de impacto",d:"Sin métricas, la IA es un gasto. Con métricas, es una inversión. Elige 3 KPIs específicos.",s:["KPI 1: tiempo ahorrado por semana (en horas)","KPI 2: reducción de errores operativos (en %)","KPI 3: satisfacción del cliente antes vs después (NPS)"]},
-      {l:"Paso 3 — NEXIA propone",bg:"#185FA5",tc:"#fff",t:"Marco de gobernanza de IA",d:"Un framework que convierte el uso empírico en ventaja competitiva estructurada, con políticas internas, métricas y casos replicables.",s:["Política interna: qué se puede y no hacer con IA","Dashboard de impacto en tiempo real","Protocolo de escalabilidad a nuevas áreas"]}
+      {l:"El problema",bg:"#EEEDFE",tc:"#534AB7",t:"Uso sin gobernanza ni métricas",d:"El 88% de las empresas encuestadas dice usar IA pero solo el 20% tiene resultados medibles (Encuesta NEXIA, 2026). Estás usando IA — pero ¿puedes responder cuánto dinero te ha ahorrado este mes?",s:[]},
+      {l:"Paso 1 — Esta semana",bg:"#E1F5EE",tc:"#0F6E56",t:"Inventario de IA en 30 minutos",d:"Antes de estructurar, necesitas saber exactamente qué tienes desplegado en tu empresa.",s:["Lista TODAS las herramientas de IA que usa tu equipo (incluyendo ChatGPT personal)","Identifica: quién las usa, para qué tarea y cuánto tiempo ahorran por semana","Calcula: costo mensual total de herramientas actuales vs. ahorro estimado en horas"]},
+      {l:"Paso 2 — Primer mes",bg:"#E1F5EE",tc:"#0F6E56",t:"3 métricas de impacto no negociables",d:"Sin métricas, la IA es un gasto percibido. Con métricas, es una inversión demostrable ante cualquier junta directiva.",s:["KPI 1: Horas totales ahorradas por semana en toda la empresa (medir semanalmente)","KPI 2: Reducción de errores en procesos donde se usa IA (medir mensualmente)","KPI 3: NPS de clientes que interactuaron con procesos con IA vs. sin IA"]},
+      {l:"Paso 3 — NEXIA propone",bg:"#185FA5",tc:"#fff",t:"Marco de gobernanza de IA empresarial",d:"Un framework que convierte tu uso empírico actual en ventaja competitiva estructurada, con política interna, métricas en tiempo real y protocolo de escalabilidad.",s:["Política interna de IA: qué puede hacer el equipo, qué no, y cómo documentarlo","Dashboard de impacto: métricas en tiempo real visibles para toda la organización","Protocolo de escalabilidad: cómo replicar los casos exitosos a nuevas áreas del negocio"]}
     ]}
 };
 let dcur=0,dresp=[];
@@ -640,7 +712,10 @@ function drender(){
   q.o.forEach((o,i)=>{
     const b=document.createElement('button');
     b.className='opt'+(dresp[dcur]===i?' sel':'');
-    b.innerHTML=`<span class="oltr">${String.fromCharCode(65+i)}</span>${o}`;
+    b.setAttribute('aria-label',o);
+    b.setAttribute('role','radio');
+    b.setAttribute('aria-checked',dresp[dcur]===i?'true':'false');
+    b.innerHTML=`<span class="oltr" aria-hidden="true">${String.fromCharCode(65+i)}</span>${o}`;
     b.onclick=()=>dsel(i);od.appendChild(b);
   });
   document.getElementById('bprev').style.display=dcur>0?'block':'none';
@@ -651,7 +726,10 @@ function drender(){
 }
 function dsel(i){
   dresp[dcur]=i;
-  document.querySelectorAll('.opt').forEach((o,idx)=>o.classList.toggle('sel',idx===i));
+  document.querySelectorAll('.opt').forEach((o,idx)=>{
+    o.classList.toggle('sel',idx===i);
+    o.setAttribute('aria-checked',idx===i?'true':'false');
+  });
   document.getElementById('bnext').disabled=false;
 }
 function dnext(){if(dcur<4){dcur++;drender();}else dshow();}
@@ -666,13 +744,13 @@ function dshow(){
   const tipo=sc<=1?'resistente':sc<=5?'curioso':'activador';
   const r=DR[tipo];
   document.getElementById('rhead').innerHTML=`
-    <div class="rbadge" style="background:${r.bc};color:${r.bcolor}">Tu arquetipo · NEXIA</div>
-    <div class="rtitle" style="color:${r.bcolor}">${r.badge}</div>
+    <div class="rbadge" style="background:${r.bc};color:${r.bcolor}" role="status">Tu arquetipo · NEXIA</div>
+    <div class="rtitle" style="color:${r.bcolor}" tabindex="0">${r.badge}</div>
     <div class="rdesc">${r.desc}</div>`;
   let ph=`<div class="ba"><div class="bac" style="background:#FAECE7"><div class="batit" style="color:#993C1D">Antes</div>`;
-  ['Miedo','Desconocimiento','Uso empírico','Exclusión'].forEach(x=>ph+=`<div class="bai" style="color:#993C1D">✕ ${x}</div>`);
+  ['Miedo','Desconocimiento','Uso empírico','Exclusión'].forEach(x=>ph+=`<div class="bai" style="color:#993C1D" aria-label="Antes: ${x}">✕ ${x}</div>`);
   ph+=`</div><div class="bac" style="background:#E1F5EE"><div class="batit" style="color:#0F6E56">Después de NEXIA</div>`;
-  ['Confianza','Acompañamiento','Resultado medible','Inclusión'].forEach(x=>ph+=`<div class="bai" style="color:#0F6E56">✓ ${x}</div>`);
+  ['Confianza','Acompañamiento','Resultado medible','Inclusión'].forEach(x=>ph+=`<div class="bai" style="color:#0F6E56" aria-label="Después: ${x}">✓ ${x}</div>`);
   ph+='</div></div>';
   r.plan.forEach(p=>{
     ph+=`<div class="rcard" style="background:${p.bg}"><div class="rlbl" style="color:${p.tc}">${p.l}</div><div class="rtit" style="color:${p.tc}">${p.t}</div><div class="rtxt" style="color:${p.tc}">${p.d}</div>`;
@@ -682,6 +760,7 @@ function dshow(){
   document.getElementById('rplan').innerHTML=ph;
   document.getElementById('dbody').style.display='none';
   document.getElementById('dresult').style.display='block';
+  document.getElementById('dresult').focus();
 }
 function drestart(){
   dresp=[];dcur=0;
@@ -691,16 +770,15 @@ function drestart(){
 }
 drender();
 
-// ── GRÁFICOS ─────────────────────────────────────────────────────────
+// ── GRÁFICOS ──────────────────────────────────────────────────────────
 window.addEventListener('load',()=>{
-  const gc='rgba(29,158,117,';
-  new Chart(document.getElementById('c1'),{type:'doughnut',data:{labels:['Usa regularmente','Ha probado','Nunca ha usado','No sabe'],datasets:[{data:[60,28,10,2],backgroundColor:['#1D9E75','#5DCAA5','#9FE1CB','#E1F5EE'],borderWidth:0}]},options:{plugins:{legend:{position:'bottom',labels:{font:{size:11}}}},cutout:'65%'}});
-  new Chart(document.getElementById('c2'),{type:'bar',data:{labels:['Costo alto','No sé cómo empezar','No lo necesito','Falta de tiempo'],datasets:[{data:[55,26,11,8],backgroundColor:['#1D9E75','#5DCAA5','#9FE1CB','#E1F5EE'],borderRadius:6}]},options:{plugins:{legend:{display:false}},scales:{y:{ticks:{callback:v=>v+'%'},max:70,grid:{color:'#F1EFE8'}},x:{grid:{display:false}}}}});
-  new Chart(document.getElementById('c3'),{type:'doughnut',data:{labels:['WhatsApp','Universidad','Instagram/TikTok','LinkedIn','Cámara de Comercio'],datasets:[{data:[68,10,8,8,6],backgroundColor:['#1D9E75','#5DCAA5','#9FE1CB','#E1F5EE','#D3D1C7'],borderWidth:0}]},options:{plugins:{legend:{position:'bottom',labels:{font:{size:11}}}},cutout:'65%'}});
-  new Chart(document.getElementById('c4'),{type:'bar',data:{labels:['Capacitación gratuita','Caso de éxito','Piloto 30 días','Cámara de Comercio','Subsidio'],datasets:[{data:[42,36,14,6,2],backgroundColor:['#1D9E75','#5DCAA5','#9FE1CB','#E1F5EE','#D3D1C7'],borderRadius:6}]},options:{plugins:{legend:{display:false}},scales:{y:{ticks:{callback:v=>v+'%'},max:50,grid:{color:'#F1EFE8'}},x:{grid:{display:false}}}}});
+  new Chart(document.getElementById('c1'),{type:'doughnut',data:{labels:['Usa regularmente (60%)','Ha probado (28%)','Nunca ha usado (10%)','No sabe (2%)'],datasets:[{data:[60,28,10,2],backgroundColor:['#1D9E75','#5DCAA5','#9FE1CB','#E1F5EE'],borderWidth:0}]},options:{plugins:{legend:{position:'bottom',labels:{font:{size:10},padding:8}}},cutout:'65%'}});
+  new Chart(document.getElementById('c2'),{type:'bar',data:{labels:['Costo alto\n(55%)','No sé cómo\nempezar (26%)','No lo\nnecesito (11%)','Sin tiempo\n(8%)'],datasets:[{data:[55,26,11,8],backgroundColor:['#1D9E75','#5DCAA5','#9FE1CB','#E1F5EE'],borderRadius:6}]},options:{plugins:{legend:{display:false}},scales:{y:{ticks:{callback:v=>v+'%'},max:70,grid:{color:'#F1EFE8'}},x:{grid:{display:false},ticks:{font:{size:10}}}}}});
+  new Chart(document.getElementById('c3'),{type:'doughnut',data:{labels:['WhatsApp (68%)','Universidad (10%)','Instagram/TikTok (8%)','LinkedIn (8%)','Cámara de Comercio (6%)'],datasets:[{data:[68,10,8,8,6],backgroundColor:['#1D9E75','#5DCAA5','#9FE1CB','#E1F5EE','#D3D1C7'],borderWidth:0}]},options:{plugins:{legend:{position:'bottom',labels:{font:{size:10},padding:6}}},cutout:'65%'}});
+  new Chart(document.getElementById('c4'),{type:'bar',data:{labels:['Capacitación\ngratuita (42%)','Caso de éxito\n(36%)','Piloto\n30 días (14%)','Cámara\nComercio (6%)','Subsidio\n(2%)'],datasets:[{data:[42,36,14,6,2],backgroundColor:['#1D9E75','#5DCAA5','#9FE1CB','#E1F5EE','#D3D1C7'],borderRadius:6}]},options:{plugins:{legend:{display:false}},scales:{y:{ticks:{callback:v=>v+'%'},max:50,grid:{color:'#F1EFE8'}},x:{grid:{display:false},ticks:{font:{size:10}}}}}});
 });
 
-// ── MAPA ─────────────────────────────────────────────────────────────
+// ── MAPA ──────────────────────────────────────────────────────────────
 function showRegion(id){
   document.querySelectorAll('.region-card').forEach(c=>c.classList.remove('active'));
   document.querySelectorAll('.reg-detail').forEach(d=>d.classList.remove('show'));
@@ -730,46 +808,71 @@ function calcROI(){
 }
 calcROI();
 
-// ── CHAT NEXIA ────────────────────────────────────────────────────────
+// ── CHAT NEXIA + FORMSPREE ────────────────────────────────────────────
+const FORMSPREE_ID='xdajnbbd';
 const chatDB={
-  'curioso':['Los Curiosos son el 45% del mercado y el segmento prioritario del plan. Reconocen que necesitan IA pero no saben por dónde empezar. Su barrera es el desconocimiento operativo, no el costo. Laura Belandia (Peluquería Guadalupe) es el caso real de este arquetipo: usó ChatGPT para agendamiento pero sin estrategia. NEXIA los lleva de cero a su primer caso de uso en 90 días, por menos de $100.000 pesos al mes.','Para identificar si eres Curioso, responde: ¿Has probado IA alguna vez pero sin un plan claro? ¿Sabes que la necesitas pero no encuentras la ruta de entrada? Si la respuesta es sí, eres Curioso — y eso es excelente. Tienes la disposición. Lo que falta es la hoja de ruta.'],
-  'costo':['El programa IA Colombia 2026 tiene una entrada desde $70.000 pesos mensuales por herramientas de mercado ya disponibles. El servicio de acompañamiento de NEXIA parte desde $150.000 pesos mensuales — un supuesto validado por el hecho de que el 50% de las empresas encuestadas pagaría entre $50.000 y $150.000 al mes.','El 55% de las empresas encuestadas cree que el costo es su mayor obstáculo. Pero al cruzar con los datos de disposición a pagar, encontramos que el 72% estaría dispuesto a pagar algo. La barrera no es el precio real: es el precio percibido sin haber visto el valor.'],
-  'conpes':['El CONPES 4144 es la política nacional de transformación digital e inteligencia artificial del gobierno colombiano. Destina $800.000 millones de pesos en incentivos para investigación y desarrollo tecnológico. El problema: el 72% de las empresas encuestadas no lo conoce bien. Gabriel Martínez del Ministerio TIC lo confirmó en nuestra entrevista: ha faltado comunicación y publicidad para que las empresas conozcan sus beneficios.','NEXIA posiciona el programa como activador del CONPES 4144 — no como competidor de la política pública, sino como el puente que conecta los incentivos disponibles con las empresas que los necesitan y no los conocen.'],
-  'inclusion':['La inclusión es el diferencial estratégico más poderoso del plan. Colombia tiene 3,1 millones de personas con discapacidad y solo el 12% tiene empleo formal (DANE, 2023). La IA accesible puede cambiar eso hoy, con herramientas desde cero pesos: Seeing AI para discapacidad visual, Google Live Caption para personas sordas, Microsoft Copilot con Narrador para discapacidad motriz.','La inclusión no es responsabilidad social: es una oportunidad de mercado no atendida. Las empresas que implementen IA accesible acceden a beneficios tributarios de la Ley 361 de 1997, cumplen la Ley 1618 de 2013 y generan ventaja reputacional. Como dijo Carolina Pinzón Echeverry de la Fundación Escuchamos: la innovación no es real si no es para todos.'],
-  'herramientas':['Las 5 herramientas de IA accesible más importantes disponibles en Colombia hoy, todas gratuitas o freemium: 1) Seeing AI de Microsoft — para personas con discapacidad visual, describe imágenes y lee textos en tiempo real. 2) Google Live Caption — subtitulación automática para personas sordas. 3) Microsoft Copilot con Narrador — control por voz para discapacidad motriz. 4) Otter.ai — transcripción automática de reuniones. 5) Be My Eyes — asistencia visual por IA en tiempo real.','Para empresas sin experiencia técnica: ChatGPT (chat.openai.com) es gratuito y no requiere ningún conocimiento previo. WhatsApp Business con respuestas automáticas es otra herramienta de IA que ya tienen el 68% de las empresas encuestadas sin saberlo.'],
-  'resistente':['Los Resistentes son el 40% del mercado. Líderes empresariales que perciben la IA como amenaza al empleo de su equipo. Su barrera es emocional, no financiera ni técnica. El hallazgo más importante del plan: las empresas que más usan IA tienen más miedo al desempleo (3,23/5) que las que nunca la han probado (2,80/5). A mayor adopción sin acompañamiento, mayor miedo.','Para los Resistentes, el mensaje efectivo no empieza por la tecnología: empieza por la seguridad del equipo humano. NEXIA les ofrece un piloto de 30 días sin costo ni compromiso — donde el resultado del propio negocio cambia la narrativa del miedo mejor que cualquier argumento racional.'],
-  'activador':['Los Activadores son el 15% del mercado. Ya usan IA habitualmente pero sin métricas ni política interna. Están en la etapa de experimentación según Ransbotham et al. (2020): superaron la resistencia inicial pero no alcanzaron la integración estratégica. No necesitan convencimiento — necesitan estructura.','NEXIA ofrece a los Activadores un marco de gobernanza que convierte el uso empírico en ventaja competitiva estructurada y replicable. Incluye: política interna de IA, dashboard de impacto con métricas reales y protocolo de escalabilidad a nuevas áreas.'],
-  'miedo':['El miedo es la barrera #1 para la adopción de IA en Colombia. El 64% de los 28 expertos entrevistados lo identificó como el principal obstáculo — por encima del costo o la infraestructura técnica. Y el hallazgo contraintuitivo del plan lo confirma: no desaparece con más tecnología.','NEXIA no implementa inteligencia artificial. NEXIA reduce el riesgo de adoptarla. Esa distinción es la clave: el programa no vende tecnología — vende reducción del miedo mediante acompañamiento, evidencia concreta y resultados medibles en 30 días en el propio negocio del empresario.']
+  'curioso':['Los Curiosos son el 45% del mercado y el segmento prioritario del plan. Reconocen que necesitan IA pero no saben por dónde empezar. Su barrera es el desconocimiento operativo, no el costo. Laura Velandia de la Peluquería Guadalupe es el caso real de este arquetipo: usó ChatGPT para agendamiento pero sin estrategia. NEXIA los lleva de cero a su primer caso de uso en 90 días, desde $70.000 pesos al mes.'],
+  'costo':['El programa IA Colombia 2026 tiene entrada desde $70.000 pesos mensuales por herramientas de mercado disponibles. El acompañamiento de NEXIA parte desde $150.000 pesos mensuales. El 50% de las 50 empresas encuestadas pagaría entre $50.000 y $150.000 al mes. La barrera no es el precio real: es el precio percibido sin haber visto el valor concreto.'],
+  'conpes':['El CONPES 4144 es la política nacional de transformación digital e inteligencia artificial. Destina $800.000 millones en incentivos para I+D tecnológico. El problema: el 72% de las empresas encuestadas por NEXIA no lo conoce bien. Gabriel Martínez del Ministerio TIC lo confirmó: ha faltado comunicación para que las empresas conozcan sus beneficios. NEXIA actúa como puente entre la política pública y las pymes.'],
+  'inclusion':['La inclusión es el diferencial estratégico del plan. Colombia tiene 3,1 millones de personas con discapacidad y solo el 12% tiene empleo formal (DANE, 2023). Herramientas gratuitas disponibles hoy: Seeing AI para discapacidad visual, Google Live Caption para personas sordas, Copilot con Narrador para discapacidad motriz. La Ley 361 de 1997 ofrece incentivos tributarios verificables para empresas que contraten personas con discapacidad.'],
+  'herramientas':['Las 5 herramientas de IA accesible gratuitas en Colombia: 1) Seeing AI — discapacidad visual (iOS, gratis). 2) Google Live Caption — personas sordas (gratis). 3) Microsoft Copilot con Narrador — discapacidad motriz (gratis en Windows). 4) Otter.ai — transcripción de reuniones (freemium). 5) Be My Eyes — asistencia visual en tiempo real (gratis). Para empezar sin experiencia técnica: ChatGPT en chat.openai.com es gratuito y no requiere conocimiento previo.'],
+  'resistente':['Los Resistentes son el 40% del mercado. Líderes que perciben la IA como amenaza al empleo. Hallazgo clave: las empresas que más usan IA tienen más miedo al desempleo (3,23/5) que las que nunca la han probado (2,80/5). El mensaje efectivo no empieza por la tecnología: empieza por la seguridad del equipo. NEXIA ofrece un piloto de 30 días sin costo ni compromiso.'],
+  'activador':['Los Activadores son el 15% del mercado. Usan IA habitualmente pero sin métricas ni política interna. El 88% dice usar IA pero solo el 20% tiene resultados medibles. NEXIA les ofrece un marco de gobernanza con política interna, dashboard de impacto y protocolo de escalabilidad a nuevas áreas.'],
+  'miedo':['El miedo es la barrera #1 en Colombia. El 64% de los 28 expertos entrevistados lo identificó como el obstáculo principal. NEXIA no implementa inteligencia artificial: NEXIA reduce el riesgo de adoptarla. El programa convierte el miedo en evidencia concreta mediante pilotos guiados de 30 días en el propio negocio del empresario.']
 };
 let chatIdx=0;
 function getChatResp(msg){
   const m=msg.toLowerCase();
-  if(m.includes('curioso')||m.includes('curiosos'))return chatDB.curioso[chatIdx++%2];
-  if(m.includes('costo')||m.includes('precio')||m.includes('cuánto')||m.includes('cuanto')||m.includes('pagar'))return chatDB.costo[chatIdx++%2];
-  if(m.includes('conpes')||m.includes('gobierno')||m.includes('política')||m.includes('incentivo'))return chatDB.conpes[chatIdx++%2];
-  if(m.includes('inclusión')||m.includes('inclusion')||m.includes('discapacidad')||m.includes('accesible'))return chatDB.inclusion[chatIdx++%2];
-  if(m.includes('herramienta')||m.includes('gratuita')||m.includes('gratis')||m.includes('chatgpt')||m.includes('copilot'))return chatDB.herramientas[chatIdx++%2];
-  if(m.includes('resistente'))return chatDB.resistente[chatIdx++%2];
-  if(m.includes('activador'))return chatDB.activador[chatIdx++%2];
-  if(m.includes('miedo')||m.includes('miedo'))return chatDB.miedo[chatIdx++%2];
-  return 'Gracias por tu pregunta. El plan IA Colombia 2026 de NEXIA cubre segmentación conductual, posicionamiento, viabilidad financiera e inclusión estratégica. Puedes preguntar sobre los arquetipos (Curioso, Resistente, Activador), los costos del programa, el CONPES 4144, las herramientas de IA accesible o el hallazgo contraintuitivo del estudio.';
+  if(m.includes('curioso'))return chatDB.curioso[0];
+  if(m.includes('costo')||m.includes('precio')||m.includes('cuánto')||m.includes('cuanto')||m.includes('pagar'))return chatDB.costo[0];
+  if(m.includes('conpes')||m.includes('gobierno')||m.includes('incentivo'))return chatDB.conpes[0];
+  if(m.includes('inclusión')||m.includes('inclusion')||m.includes('discapacidad')||m.includes('accesible'))return chatDB.inclusion[0];
+  if(m.includes('herramienta')||m.includes('gratuita')||m.includes('gratis')||m.includes('chatgpt'))return chatDB.herramientas[0];
+  if(m.includes('resistente'))return chatDB.resistente[0];
+  if(m.includes('activador'))return chatDB.activador[0];
+  if(m.includes('miedo'))return chatDB.miedo[0];
+  return 'Gracias por tu pregunta. Puedes preguntar sobre: los arquetipos (Curioso, Resistente, Activador), los costos del programa, el CONPES 4144, las herramientas de IA accesible para inclusión, o el hallazgo contraintuitivo del estudio. ¿Cuál te interesa más?';
 }
 function addMsg(text,type){
   const d=document.getElementById('chatmsgs');
   const m=document.createElement('div');
-  m.className='msg msg-'+type;m.textContent=text;
-  d.appendChild(m);d.scrollTop=d.scrollHeight;
+  m.className='msg msg-'+type;
+  m.textContent=text;
+  m.setAttribute('role','article');
+  m.setAttribute('aria-label',type==='bot'?'Respuesta de NEXIA':'Tu mensaje');
+  d.appendChild(m);
+  d.scrollTop=d.scrollHeight;
+}
+async function sendToFormspree(msg, resp){
+  try {
+    await fetch(`https://formspree.io/f/${FORMSPREE_ID}`, {
+      method:'POST',
+      headers:{'Content-Type':'application/json','Accept':'application/json'},
+      body:JSON.stringify({
+        mensaje_usuario: msg,
+        respuesta_nexia: resp,
+        fecha: new Date().toLocaleString('es-CO'),
+        pagina: window.location.href
+      })
+    });
+  } catch(e){ console.log('Error Formspree:', e); }
 }
 function sendChat(){
   const inp=document.getElementById('chatinput');
-  const msg=inp.value.trim();if(!msg)return;
-  addMsg(msg,'user');inp.value='';
+  const msg=inp.value.trim();
+  if(!msg)return;
+  addMsg(msg,'user');
+  inp.value='';
   const typing=document.createElement('div');
-  typing.className='msg msg-typing';typing.textContent='NEXIA está escribiendo...';
+  typing.className='msg msg-typing';
+  typing.textContent='NEXIA está escribiendo...';
+  typing.setAttribute('aria-live','polite');
   document.getElementById('chatmsgs').appendChild(typing);
   setTimeout(()=>{
     typing.remove();
-    addMsg(getChatResp(msg),'bot');
+    const resp=getChatResp(msg);
+    addMsg(resp,'bot');
+    sendToFormspree(msg, resp);
   },800);
 }
 function chatSug(el){
