@@ -227,6 +227,41 @@ footer{background:var(--n);color:#666;text-align:center;padding:32px 24px}
   .calc-results{grid-template-columns:1fr}
   .acc-bar{bottom:16px;right:16px}
 }
+
+/* FORMULARIOS DE CONTACTO */
+.contact-overlay{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.6);z-index:500;display:flex;align-items:center;justify-content:center;padding:20px;backdrop-filter:blur(4px)}
+.contact-overlay.hide{display:none}
+.contact-modal{background:#fff;border-radius:20px;padding:32px;max-width:440px;width:100%;box-shadow:0 20px 60px rgba(0,0,0,.2);position:relative}
+.contact-modal h3{font-size:20px;font-weight:700;color:var(--n);margin-bottom:6px}
+.contact-modal p{font-size:13px;color:var(--g);margin-bottom:24px;line-height:1.5}
+.contact-badge{display:inline-block;background:var(--vc);color:var(--vd);font-size:11px;font-weight:600;padding:4px 12px;border-radius:20px;margin-bottom:12px}
+.cf-field{margin-bottom:14px}
+.cf-field label{font-size:12px;font-weight:600;color:var(--g);display:block;margin-bottom:5px}
+.cf-field input{width:100%;padding:11px 14px;border-radius:10px;border:1.5px solid #E5E3DC;font-size:14px;outline:none;transition:border .2s}
+.cf-field input:focus{border-color:var(--v)}
+.cf-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.cf-submit{width:100%;padding:13px;background:var(--v);color:#fff;border:none;border-radius:10px;font-size:15px;font-weight:600;cursor:pointer;transition:all .2s;margin-top:4px}
+.cf-submit:hover{background:var(--vd)}
+.cf-skip{width:100%;padding:10px;background:transparent;color:var(--g);border:none;font-size:13px;cursor:pointer;margin-top:8px;text-decoration:underline}
+.cf-success{text-align:center;padding:20px 0}
+.cf-success-icon{font-size:48px;margin-bottom:12px}
+.cf-success h4{font-size:18px;font-weight:700;color:var(--v);margin-bottom:6px}
+.cf-success p{font-size:13px;color:var(--g)}
+.contact-modal .close-btn{position:absolute;top:16px;right:16px;background:none;border:none;font-size:20px;cursor:pointer;color:var(--g);line-height:1}
+
+/* FORMULARIO RESULTADO DIAGNÓSTICO */
+.result-contact{background:linear-gradient(135deg,var(--n),#3C3C3A);border-radius:14px;padding:24px;margin:0 28px 20px;color:#fff}
+.result-contact h4{font-size:16px;font-weight:700;margin-bottom:6px}
+.result-contact p{font-size:13px;opacity:.8;margin-bottom:18px}
+.rc-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:12px}
+.rc-field input{width:100%;padding:10px 12px;border-radius:8px;border:none;font-size:13px;outline:none;background:rgba(255,255,255,.1);color:#fff;border:1px solid rgba(255,255,255,.2)}
+.rc-field input::placeholder{color:rgba(255,255,255,.5)}
+.rc-field input:focus{background:rgba(255,255,255,.15);border-color:var(--v)}
+.rc-submit{width:100%;padding:12px;background:var(--v);color:#fff;border:none;border-radius:10px;font-size:14px;font-weight:600;cursor:pointer;transition:all .2s}
+.rc-submit:hover{background:var(--vd)}
+.rc-nota{font-size:11px;opacity:.5;margin-top:8px;text-align:center}
+.rc-enviado{background:var(--vc);color:var(--vd);border-radius:10px;padding:14px;text-align:center;font-size:13px;font-weight:600;display:none}
+
 </style>
 </head>
 <body>
@@ -255,6 +290,46 @@ footer{background:var(--n);color:#666;text-align:center;padding:32px 24px}
   <button class="acc-toggle" onclick="document.getElementById('acc-panel').classList.toggle('show')" aria-label="Abrir herramientas de accesibilidad" title="Accesibilidad">
     ♿
   </button>
+</div>
+
+
+<!-- POPUP CONTACTO CHAT -->
+<div class="contact-overlay hide" id="chat-overlay" role="dialog" aria-modal="true" aria-label="Formulario de contacto NEXIA">
+  <div class="contact-modal">
+    <button class="close-btn" onclick="skipContact()" aria-label="Cerrar">×</button>
+    <div class="contact-badge">NEXIA — Asistente IA Colombia 2026</div>
+    <h3>¡Hola! Antes de chatear...</h3>
+    <p>Déjanos tus datos para que podamos darte una respuesta personalizada y hacer seguimiento a tu caso. Tus datos están protegidos por la Ley 1581 de 2012.</p>
+    <div id="chat-form-body">
+      <div class="cf-grid">
+        <div class="cf-field">
+          <label for="cf-nombre">Nombre *</label>
+          <input type="text" id="cf-nombre" placeholder="Tu nombre" required aria-label="Nombre completo">
+        </div>
+        <div class="cf-field">
+          <label for="cf-empresa">Empresa</label>
+          <input type="text" id="cf-empresa" placeholder="Tu empresa" aria-label="Nombre de la empresa">
+        </div>
+      </div>
+      <div class="cf-grid">
+        <div class="cf-field">
+          <label for="cf-whatsapp">WhatsApp *</label>
+          <input type="tel" id="cf-whatsapp" placeholder="300 000 0000" required aria-label="Número de WhatsApp">
+        </div>
+        <div class="cf-field">
+          <label for="cf-correo">Correo electrónico</label>
+          <input type="email" id="cf-correo" placeholder="tu@correo.com" aria-label="Correo electrónico">
+        </div>
+      </div>
+      <button class="cf-submit" onclick="submitChatContact()" aria-label="Iniciar chat con NEXIA">Iniciar chat con NEXIA →</button>
+      <button class="cf-skip" onclick="skipContact()" aria-label="Continuar sin registrarse">Prefiero continuar sin registrarme</button>
+    </div>
+    <div class="cf-success" id="chat-success" style="display:none">
+      <div class="cf-success-icon">✅</div>
+      <h4>¡Perfecto! Ya puedes chatear.</h4>
+      <p>Yuliet te contactará por WhatsApp en las próximas horas con información personalizada para tu empresa.</p>
+    </div>
+  </div>
 </div>
 
 <!-- NAV -->
@@ -621,6 +696,26 @@ footer{background:var(--n);color:#666;text-align:center;padding:32px 24px}
 </div>
 </div>
 
+
+<!-- TEMPLATE FORMULARIO RESULTADO -->
+<template id="result-contact-template">
+
+    <div class="result-contact" id="result-contact-form">
+      <h4>🎯 ¿Quieres que NEXIA te contacte?</h4>
+      <p>Recibe tu plan de acción personalizado por WhatsApp según tu arquetipo. Sin costo. Sin compromiso.</p>
+      <div class="rc-grid" id="rc-fields">
+        <div class="rc-field"><input type="text" id="rc-nombre" placeholder="Tu nombre *" aria-label="Nombre"></div>
+        <div class="rc-field"><input type="text" id="rc-empresa" placeholder="Tu empresa" aria-label="Empresa"></div>
+        <div class="rc-field"><input type="tel" id="rc-whatsapp" placeholder="WhatsApp * (300 000 0000)" aria-label="WhatsApp"></div>
+        <div class="rc-field"><input type="email" id="rc-correo" placeholder="Correo electrónico" aria-label="Correo"></div>
+      </div>
+      <button class="rc-submit" onclick="submitResultContact()" aria-label="Quiero que NEXIA me contacte">Quiero que NEXIA me contacte →</button>
+      <p class="rc-nota">Tus datos están protegidos por la Ley 1581 de 2012. Solo los usamos para contactarte.</p>
+      <div class="rc-enviado" id="rc-enviado">✅ ¡Listo! Yuliet te escribe por WhatsApp pronto con tu plan personalizado.</div>
+    </div>
+
+</template>
+
 <!-- FOOTER -->
 <footer role="contentinfo">
   <div class="flogo"><span>N</span>EXIA</div>
@@ -759,6 +854,8 @@ function dshow(){
   document.getElementById('rplan').innerHTML=ph;
   document.getElementById('dbody').style.display='none';
   document.getElementById('dresult').style.display='block';
+  // Agregar formulario de contacto al resultado
+  document.getElementById('rplan').insertAdjacentHTML('afterend', document.getElementById('result-contact-template').innerHTML);
   document.getElementById('dresult').focus();
 }
 function drestart(){
@@ -857,6 +954,7 @@ async function sendToFormspree(msg, resp){
   } catch(e){ console.log('Error Formspree:', e); }
 }
 function sendChat(){
+  if(!chatContactShown){ initChatContact(); return; }
   const inp=document.getElementById('chatinput');
   const msg=inp.value.trim();
   if(!msg)return;
@@ -878,6 +976,92 @@ function chatSug(el){
   document.getElementById('chatinput').value=el.textContent;
   sendChat();
 }
+
+// ── FORMULARIOS DE CONTACTO ───────────────────────────────────────────
+const FORMSPREE = 'xdajnbbd';
+let userContact = {nombre:'', whatsapp:'', correo:'', empresa:''};
+
+// Mostrar popup antes del chat
+const origSendChat = window.sendChat;
+let chatContactShown = false;
+
+function initChatContact(){
+  if(!chatContactShown){
+    document.getElementById('chat-overlay').classList.remove('hide');
+    chatContactShown = true;
+  }
+}
+
+function skipContact(){
+  document.getElementById('chat-overlay').classList.add('hide');
+}
+
+async function submitChatContact(){
+  const nombre = document.getElementById('cf-nombre').value.trim();
+  const whatsapp = document.getElementById('cf-whatsapp').value.trim();
+  const empresa = document.getElementById('cf-empresa').value.trim();
+  const correo = document.getElementById('cf-correo').value.trim();
+
+  if(!nombre || !whatsapp){
+    alert('Por favor completa tu nombre y WhatsApp para continuar.');
+    return;
+  }
+
+  userContact = {nombre, whatsapp, correo, empresa};
+
+  try {
+    await fetch(`https://formspree.io/f/${FORMSPREE}`, {
+      method:'POST',
+      headers:{'Content-Type':'application/json','Accept':'application/json'},
+      body: JSON.stringify({
+        tipo: '📋 NUEVO CONTACTO — Chat NEXIA',
+        nombre, whatsapp, correo, empresa,
+        fecha: new Date().toLocaleString('es-CO'),
+        fuente: 'Chat de la página web'
+      })
+    });
+  } catch(e){}
+
+  document.getElementById('chat-form-body').style.display = 'none';
+  document.getElementById('chat-success').style.display = 'block';
+  setTimeout(()=> document.getElementById('chat-overlay').classList.add('hide'), 2500);
+}
+
+// Formulario resultado diagnóstico
+async function submitResultContact(){
+  const nombre = document.getElementById('rc-nombre').value.trim();
+  const whatsapp = document.getElementById('rc-whatsapp').value.trim();
+  const empresa = document.getElementById('rc-empresa').value.trim();
+  const correo = document.getElementById('rc-correo').value.trim();
+
+  if(!nombre || !whatsapp){
+    alert('Por favor completa tu nombre y WhatsApp.');
+    return;
+  }
+
+  // Detectar arquetipo actual
+  const arq = document.querySelector('.rtitle') ? document.querySelector('.rtitle').textContent : 'No identificado';
+
+  try {
+    await fetch(`https://formspree.io/f/${FORMSPREE}`, {
+      method:'POST',
+      headers:{'Content-Type':'application/json','Accept':'application/json'},
+      body: JSON.stringify({
+        tipo: '🎯 LEAD DIAGNÓSTICO — Solicita contacto',
+        nombre, whatsapp, correo, empresa,
+        arquetipo: arq,
+        fecha: new Date().toLocaleString('es-CO'),
+        fuente: 'Resultado del diagnóstico de arquetipo'
+      })
+    });
+  } catch(e){}
+
+  document.getElementById('rc-fields').style.display = 'none';
+  document.querySelector('.rc-submit').style.display = 'none';
+  document.querySelector('.rc-nota').style.display = 'none';
+  document.getElementById('rc-enviado').style.display = 'block';
+}
+
 </script>
 </body>
 </html>
